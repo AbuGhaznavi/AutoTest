@@ -73,6 +73,7 @@
     <Compile Include="ConsoleTest.Designer.cs">
       <DependentUpon>ConsoleTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="MicronodeLTParser.cs" />
     <Compile Include="UI.cs">
       <SubType>Form</SubType>
     </Compile>
