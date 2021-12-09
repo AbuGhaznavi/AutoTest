@@ -15,6 +15,14 @@ namespace AutoTest
         private AutoResetEvent _reset2 = new AutoResetEvent(false);
         private AutoResetEvent _reset3 = new AutoResetEvent(false);
         private AutoResetEvent _reset4 = new AutoResetEvent(false);
+        private AutoResetEvent _reset5 = new AutoResetEvent(false);
+        private AutoResetEvent _reset6 = new AutoResetEvent(false);
+        private AutoResetEvent _reset7 = new AutoResetEvent(false);
+        private AutoResetEvent _reset8 = new AutoResetEvent(false);
+        private AutoResetEvent _reset9 = new AutoResetEvent(false);
+        private AutoResetEvent _reset10 = new AutoResetEvent(false);
+        private AutoResetEvent _reset11 = new AutoResetEvent(false);
+        private AutoResetEvent _reset12 = new AutoResetEvent(false);
 
         public add()
         {
@@ -57,10 +65,18 @@ namespace AutoTest
         private void start_Click(object sender, EventArgs e)
         {
             consoleTestingToolStripMenuItem.Enabled = false;
-            port1ck.Enabled = false;
-            port2ck.Enabled = false;
-            port3ck.Enabled = false;
-            port4ck.Enabled = false;
+            metronodeLTForm1.checkBox1.Enabled = false;
+            metronodeLTForm1.checkBox2.Enabled = false;
+            metronodeLTForm1.checkBox3.Enabled = false;
+            metronodeLTForm1.checkBox4.Enabled = false;
+            metronodeLTForm1.checkBox5.Enabled = false;
+            metronodeLTForm1.checkBox6.Enabled = false;
+            metronodeLTForm1.checkBox7.Enabled = false;
+            metronodeLTForm1.checkBox8.Enabled = false;
+            metronodeLTForm1.checkBox9.Enabled = false;
+            metronodeLTForm1.checkBox10.Enabled = false;
+            metronodeLTForm1.checkBox11.Enabled = false;
+            metronodeLTForm1.checkBox12.Enabled = false;
             updateAll.Enabled = false;
             Retest.Enabled = false;
             delRow.Enabled = false;
@@ -83,10 +99,18 @@ namespace AutoTest
         private void stop_Click(object sender, EventArgs e)
         {
             consoleTestingToolStripMenuItem.Enabled = true;
-            port1ck.Enabled = true;
-            port2ck.Enabled = true;
-            port3ck.Enabled = true;
-            port4ck.Enabled = true;
+            metronodeLTForm1.checkBox1.Enabled = true;
+            metronodeLTForm1.checkBox2.Enabled = true;
+            metronodeLTForm1.checkBox3.Enabled = true;
+            metronodeLTForm1.checkBox4.Enabled = true;
+            metronodeLTForm1.checkBox5.Enabled = true;
+            metronodeLTForm1.checkBox6.Enabled = true;
+            metronodeLTForm1.checkBox7.Enabled = true;
+            metronodeLTForm1.checkBox8.Enabled = true;
+            metronodeLTForm1.checkBox9.Enabled = true;
+            metronodeLTForm1.checkBox10.Enabled = true;
+            metronodeLTForm1.checkBox11.Enabled = true;
+            metronodeLTForm1.checkBox12.Enabled = true;
             updateAll.Enabled = true;
             Retest.Enabled = true;
             delRow.Enabled = true;
@@ -99,26 +123,67 @@ namespace AutoTest
             dataGridView1.AllowUserToDeleteRows = true;
             dataGridView1.ReadOnly = false;
             cons.Enabled = true;
-            if (port1ck.Checked)
+            if (metronodeLTForm1.checkBox1.Checked)
             {
                 sfp1Worker.CancelAsync();
                 _reset1.WaitOne();
             }
-            if (port2ck.Checked)
+            if (metronodeLTForm1.checkBox2.Checked)
             {
                 sfp2Worker.CancelAsync();
                 _reset2.WaitOne();
             }
-            if (port3ck.Checked)
+            if (metronodeLTForm1.checkBox3.Checked)
             {
                 sfp3Worker.CancelAsync();
                 _reset3.WaitOne();
             }
-            if (port4ck.Checked)
+            if (metronodeLTForm1.checkBox4.Checked)
             {
                 sfp4Worker.CancelAsync();
                 _reset4.WaitOne();
             }
+            if (metronodeLTForm1.checkBox5.Checked)
+            {
+                sfp5Worker.CancelAsync();
+                _reset5.WaitOne();
+            }
+            if (metronodeLTForm1.checkBox6.Checked)
+            {
+                sfp6Worker.CancelAsync();
+                _reset6.WaitOne();
+            }
+            if (metronodeLTForm1.checkBox7.Checked)
+            {
+                sfp7Worker.CancelAsync();
+                _reset7.WaitOne();
+            }
+            if (metronodeLTForm1.checkBox8.Checked)
+            {
+                sfp8Worker.CancelAsync();
+                _reset8.WaitOne();
+            }
+            if (metronodeLTForm1.checkBox9.Checked)
+            {
+                sfp9Worker.CancelAsync();
+                _reset9.WaitOne();
+            }
+            if (metronodeLTForm1.checkBox10.Checked)
+            {
+                sfp10Worker.CancelAsync();
+                _reset10.WaitOne();
+            }
+            if (metronodeLTForm1.checkBox11.Checked)
+            {
+                sfp11Worker.CancelAsync();
+                _reset11.WaitOne();
+            }
+            if (metronodeLTForm1.checkBox12.Checked)
+            {
+                sfp12Worker.CancelAsync();
+                _reset12.WaitOne();
+            }
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Cells[0].Style.BackColor == Color.Orange)
