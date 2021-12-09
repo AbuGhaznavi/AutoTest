@@ -2,7 +2,7 @@
 
 namespace AutoTest
 {
-    class Parser
+    class MicronodeLTParser
     {
 
         //Find serial number in the html string
