@@ -56,10 +56,14 @@
             this.sfp2Worker = new System.ComponentModel.BackgroundWorker();
             this.sfp3Worker = new System.ComponentModel.BackgroundWorker();
             this.sfp4Worker = new System.ComponentModel.BackgroundWorker();
-            this.port1ck = new System.Windows.Forms.CheckBox();
-            this.port2ck = new System.Windows.Forms.CheckBox();
-            this.port3ck = new System.Windows.Forms.CheckBox();
-            this.port4ck = new System.Windows.Forms.CheckBox();
+            this.sfp5Worker = new System.ComponentModel.BackgroundWorker();
+            this.sfp6Worker = new System.ComponentModel.BackgroundWorker();
+            this.sfp7Worker = new System.ComponentModel.BackgroundWorker();
+            this.sfp8Worker = new System.ComponentModel.BackgroundWorker();
+            this.sfp9Worker = new System.ComponentModel.BackgroundWorker();
+            this.sfp10Worker = new System.ComponentModel.BackgroundWorker();
+            this.sfp11Worker = new System.ComponentModel.BackgroundWorker();
+            this.sfp12Worker = new System.ComponentModel.BackgroundWorker();
             this.label5 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -78,6 +82,7 @@
             this.Retest = new System.Windows.Forms.Button();
             this.delRow = new System.Windows.Forms.Button();
             this.updateAll = new System.Windows.Forms.Button();
+            this.configurePorts = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -111,7 +116,7 @@
             // setTestReportFolderToolStripMenuItem
             // 
             this.setTestReportFolderToolStripMenuItem.Name = "setTestReportFolderToolStripMenuItem";
-            this.setTestReportFolderToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.setTestReportFolderToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.setTestReportFolderToolStripMenuItem.Text = "Set Test Report Folder";
             this.setTestReportFolderToolStripMenuItem.Click += new System.EventHandler(this.setTestReportFolderToolStripMenuItem_Click);
             // 
@@ -119,7 +124,7 @@
             // 
             this.consoleTestingToolStripMenuItem.Enabled = false;
             this.consoleTestingToolStripMenuItem.Name = "consoleTestingToolStripMenuItem";
-            this.consoleTestingToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.consoleTestingToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.consoleTestingToolStripMenuItem.Text = "Console Testing";
             this.consoleTestingToolStripMenuItem.Click += new System.EventHandler(this.consoleTestingToolStripMenuItem_Click);
             // 
@@ -127,7 +132,7 @@
             // 
             this.openTestLogToolStripMenuItem.Enabled = false;
             this.openTestLogToolStripMenuItem.Name = "openTestLogToolStripMenuItem";
-            this.openTestLogToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.openTestLogToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.openTestLogToolStripMenuItem.Text = "Open Test Log";
             this.openTestLogToolStripMenuItem.Click += new System.EventHandler(this.openTestLogToolStripMenuItem_Click);
             // 
@@ -135,7 +140,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -300,55 +305,45 @@
             this.sfp4Worker.WorkerSupportsCancellation = true;
             this.sfp4Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp4Worker_DoWork);
             // 
-            // port1ck
+            // sfp5Worker
             // 
-            this.port1ck.AutoSize = true;
-            this.port1ck.ForeColor = System.Drawing.Color.Black;
-            this.port1ck.Location = new System.Drawing.Point(882, 18);
-            this.port1ck.Name = "port1ck";
-            this.port1ck.Size = new System.Drawing.Size(54, 17);
-            this.port1ck.TabIndex = 16;
-            this.port1ck.Text = "Port 1";
-            this.port1ck.UseVisualStyleBackColor = true;
+            this.sfp5Worker.WorkerSupportsCancellation = true;
+            this.sfp5Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp5Worker_DoWork);
             // 
-            // port2ck
+            // sfp6Worker
             // 
-            this.port2ck.AutoSize = true;
-            this.port2ck.Checked = true;
-            this.port2ck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.port2ck.ForeColor = System.Drawing.Color.Black;
-            this.port2ck.Location = new System.Drawing.Point(942, 18);
-            this.port2ck.Name = "port2ck";
-            this.port2ck.Size = new System.Drawing.Size(54, 17);
-            this.port2ck.TabIndex = 17;
-            this.port2ck.Text = "Port 2";
-            this.port2ck.UseVisualStyleBackColor = true;
+            this.sfp6Worker.WorkerSupportsCancellation = true;
+            this.sfp6Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp6Worker_DoWork);
             // 
-            // port3ck
+            // sfp7Worker
             // 
-            this.port3ck.AutoSize = true;
-            this.port3ck.Checked = true;
-            this.port3ck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.port3ck.ForeColor = System.Drawing.Color.Black;
-            this.port3ck.Location = new System.Drawing.Point(882, 37);
-            this.port3ck.Name = "port3ck";
-            this.port3ck.Size = new System.Drawing.Size(54, 17);
-            this.port3ck.TabIndex = 18;
-            this.port3ck.Text = "Port 3";
-            this.port3ck.UseVisualStyleBackColor = true;
+            this.sfp7Worker.WorkerSupportsCancellation = true;
+            this.sfp7Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp7Worker_DoWork);
             // 
-            // port4ck
+            // sfp8Worker
             // 
-            this.port4ck.AutoSize = true;
-            this.port4ck.Checked = true;
-            this.port4ck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.port4ck.ForeColor = System.Drawing.Color.Black;
-            this.port4ck.Location = new System.Drawing.Point(942, 37);
-            this.port4ck.Name = "port4ck";
-            this.port4ck.Size = new System.Drawing.Size(54, 17);
-            this.port4ck.TabIndex = 19;
-            this.port4ck.Text = "Port 4";
-            this.port4ck.UseVisualStyleBackColor = true;
+            this.sfp8Worker.WorkerSupportsCancellation = true;
+            this.sfp8Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp8Worker_DoWork);
+            // 
+            // sfp9Worker
+            // 
+            this.sfp9Worker.WorkerSupportsCancellation = true;
+            this.sfp9Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp9Worker_DoWork);
+            // 
+            // sfp10Worker
+            // 
+            this.sfp10Worker.WorkerSupportsCancellation = true;
+            this.sfp10Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp10Worker_DoWork);
+            // 
+            // sfp11Worker
+            // 
+            this.sfp11Worker.WorkerSupportsCancellation = true;
+            this.sfp11Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp11Worker_DoWork);
+            // 
+            // sfp12Worker
+            // 
+            this.sfp12Worker.WorkerSupportsCancellation = true;
+            this.sfp12Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sfp12Worker_DoWork);
             // 
             // label5
             // 
@@ -550,12 +545,23 @@
             this.updateAll.UseVisualStyleBackColor = true;
             this.updateAll.Click += new System.EventHandler(this.updateAll_Click);
             // 
+            // configurePorts
+            // 
+            this.configurePorts.Location = new System.Drawing.Point(872, 14);
+            this.configurePorts.Name = "configurePorts";
+            this.configurePorts.Size = new System.Drawing.Size(115, 23);
+            this.configurePorts.TabIndex = 35;
+            this.configurePorts.Text = "Configure Ports";
+            this.configurePorts.UseVisualStyleBackColor = true;
+            this.configurePorts.Click += new System.EventHandler(this.configurePorts_Click);
+            // 
             // add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1008, 695);
+            this.Controls.Add(this.configurePorts);
             this.Controls.Add(this.updateAll);
             this.Controls.Add(this.delRow);
             this.Controls.Add(this.Retest);
@@ -566,10 +572,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.port4ck);
-            this.Controls.Add(this.port3ck);
-            this.Controls.Add(this.port2ck);
-            this.Controls.Add(this.port1ck);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pass);
@@ -628,10 +630,14 @@
         private System.ComponentModel.BackgroundWorker sfp2Worker;
         private System.ComponentModel.BackgroundWorker sfp3Worker;
         private System.ComponentModel.BackgroundWorker sfp4Worker;
-        private System.Windows.Forms.CheckBox port1ck;
-        private System.Windows.Forms.CheckBox port2ck;
-        private System.Windows.Forms.CheckBox port3ck;
-        private System.Windows.Forms.CheckBox port4ck;
+        private System.ComponentModel.BackgroundWorker sfp5Worker;
+        private System.ComponentModel.BackgroundWorker sfp6Worker;
+        private System.ComponentModel.BackgroundWorker sfp7Worker;
+        private System.ComponentModel.BackgroundWorker sfp8Worker;
+        private System.ComponentModel.BackgroundWorker sfp9Worker;
+        private System.ComponentModel.BackgroundWorker sfp10Worker;
+        private System.ComponentModel.BackgroundWorker sfp11Worker;
+        private System.ComponentModel.BackgroundWorker sfp12Worker;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -653,6 +659,7 @@
         private System.Windows.Forms.Button Retest;
         private System.Windows.Forms.Button delRow;
         private System.Windows.Forms.Button updateAll;
+        private System.Windows.Forms.Button configurePorts;
     }
 }
 
