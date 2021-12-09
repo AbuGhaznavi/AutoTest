@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0034)https://192.168.1.34/portsfp?idx=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="Pragma" content="No-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<title>Port SFP</title>
+<link rel="stylesheet" href="https://192.168.1.34/default.css" type="text/css">
+<script src="https://192.168.1.34/acd_common.js" language="JavaScript" type="text/javascript"> </script>
+<link rel="stylesheet" href="https://192.168.1.34/accedianweb/AccedianWeb.css"></head>
+<body bgcolor="gainsboro">
+<style type="text/css" media="screen"> 
+ <!-- 
+TEXTAREA { 
+background-color: white; 
+color: black; 
+font-family: courier; 
+font-size: 8pt; 
+font-weight: normal 
+overflow: visible 
+} 
+--> 
+</style> 
+ 
+<!-- banner -->
+<div class="accedianBanner"></div>
+
+<!-- GWT  -->
+<script type="text/javascript" language="javascript" src="https://192.168.1.34/accedianweb/accedianweb.nocache.js"></script><script defer="defer">accedianweb.onInjectionDone('accedianweb')</script>
+
+<!-- status bar -->
+<div style="background-color:white">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+    <td width="425" align="left" id="acdDateTime" style="height: 22px;"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="left" style="vertical-align: top;"><div class="accedianStatusBarLeft" title="System time" style="width: 155px;">|1970-01-01 20:50:54+00:00</div></td><td align="left" style="vertical-align: top;"><div class="accedianStatusBarLeft" title="Minor alarm status" style="width: 35px;"> | MIN</div></td><td align="left" style="vertical-align: top;"><img onload="this.__gwtLastUnhandledEvent=&quot;load&quot;;" src="https://192.168.1.34/accedianweb/clear.cache.gif" style="width:16px;height:16px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAy0lEQVR42t2SKw6EMBRF2Va3gcQikUhsJRKJRXYJ2FkCW2AJlW9ySO6k06GAniY3aR495/VDVf3n2LbN2ra1uq4/ofYIBpymydZ1ta7rviTktvMwDMaIMR6SXECDokALAPd9P3ZCrWmaI+yIjONoRQHRQoGCvffW97055yyEYEWBkoKKBBz1UnAG54KfXXCJ6TFymHBHyBHM82ynzwhMpxymDsi3oiCXEObUUpiXOL1IDRZwVoVtC1b3ZXld/1h0EKAgfgTnIiDCPIXf0i476x+xWvoAAAAASUVORK5CYII=) no-repeat 0px 0px;" border="0" class="CursorMouseHover"></td><td align="left" style="vertical-align: top;"><div class="accedianStatusBarLeft" title="Major alarm status" style="width: 35px;"> | MAJ</div></td><td align="left" style="vertical-align: top;"><img onload="this.__gwtLastUnhandledEvent=&quot;load&quot;;" src="https://192.168.1.34/accedianweb/clear.cache.gif" style="width:16px;height:16px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4UlEQVR42t2SIRKDMBBFIyuR2EpkZWxlZWWugYytzBFiIyORtUhkZS2yR9jmpyyTQkLRzcwfGCbv7WaDEP+5BmfJNjXZSszBt10wwFGd6WFu9GwO1NVijgui35UvkrDGvo+SIYBp7k1VlqBVbIjVOx87AfQ6fkKnKnZljKGiAK1iE8Igw3SV8SmlJO89FQXc7hfImQRa621BFl4IVl1giCzIwiGYkVIqCqzNXC2uEefPCfAdt9S2bVmwkkyTR+UUxk1kB8kLG3BWDtpmmKs712//WKjAAAfiXfBSBAjBewq/AYL2LqxgTocRAAAAAElFTkSuQmCC) no-repeat 0px 0px;" border="0" class="CursorMouseHover"></td><td align="left" style="vertical-align: top;"><div class="accedianStatusBarLeft" title="Critical alarm status" style="width: 40px;"> | CRIT</div></td><td align="left" style="vertical-align: top;"><img onload="this.__gwtLastUnhandledEvent=&quot;load&quot;;" src="https://192.168.1.34/accedianweb/clear.cache.gif" style="width:16px;height:16px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4UlEQVR42t2SIRKDMBBFIyuR2EpkZWxlZWWugYytzBFiIyORtUhkZS2yR9jmpyyTQkLRzcwfGCbv7WaDEP+5BmfJNjXZSszBt10wwFGd6WFu9GwO1NVijgui35UvkrDGvo+SIYBp7k1VlqBVbIjVOx87AfQ6fkKnKnZljKGiAK1iE8Igw3SV8SmlJO89FQXc7hfImQRa621BFl4IVl1giCzIwiGYkVIqCqzNXC2uEefPCfAdt9S2bVmwkkyTR+UUxk1kB8kLG3BWDtpmmKs712//WKjAAAfiXfBSBAjBewq/AYL2LqxgTocRAAAAAElFTkSuQmCC) no-repeat 0px 0px;" border="0" class="CursorMouseHover"></td></tr></tbody></table></td>
+    <td width="1075" align="left"><b>admin : Amarillo MetroNode</b></td>
+    <td width="100" align="right" id="acdStatus" style="height: 22px;"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="left" style="vertical-align: top;"><div class="accedianStatusBarLeft" style="width: 200px;"></div></td><td align="left" style="vertical-align: top;"><img onload="this.__gwtLastUnhandledEvent=&quot;load&quot;;" src="https://192.168.1.34/accedianweb/clear.cache.gif" style="width:20px;height:20px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAADl0lEQVR42pXUf0yUdRzA8Vu5thpbzbZia0qQmEg0p7kl6aybs7FVW63VzGCEmomaIBG/JfS8OG4n3MFxQHcHQ+GA446fegd4O2Lj4ld0cnkgF6HmYYx/rPhH/ePd8zybrhMa+Nk+++55vp/va5/v9/vskcn+J2ZnZ+nq6qK5uRmr1YrNZpOyu7sbcU72ODE9PY3JZGJgYICpqSkCgQDBYJD5+Xm8Xi/19fWINavC/H4/1dXVEuTxeNBoNJSVlaHVatHpdIyPjzM3N4fRaESsXREUt9jT04PP55OQRzusqqqSILfbLR3HimBFRQUjIyMSKp6dxWLB5XJJKT47HA46OzsZGxtDrF0RVKlUjI6O4nQ6qaysXLKgtraW9vZ2CRRrVwSVSqXUYW9vr3TLj87PzMw87NBsNq8eFDsUt/3g/cKd20zMDEtn+VigQqFgeHiYvr4+7Hb7wwXn3SoybXJ+uuKSvsVVgX/cDHC6qEAqFrdbmPMp2rMfcFLxFme8O9DfiedE41Zq6rVSjVKRj7hmWezP2zdQf/8RLefWMtgUjadlkzBuQKt/haKhXegX3uFccAfqW9vItERTXb6WJvXTVJR8xv3795aidR3FHNe/zuWLewgMJnGt/2Pqzu/kO/duKm8loPntbYqvxVNy/Q1yhuLIq1iPz/YUZbkvsvjPX6HgkL+Pkt7PabiRSmGrnO6W9zCZd1Po3INh5kNK/QmofXJUkzs5NbSdPG0EVn0Yv1ifQZsfweLi34Rg5a6jtPyexYXA15j8h8hplFPYthfD5D403vc5OyLnzM/xZP+4lVzdOnpqnqDfKMNrDUNX8HIoWGz9isarWVgms6mbSMPoPUL52D6UnnfJ63+TzMtbyHBv5rhjI+mlL2HTPcklvYyeSgG0PSuAkaHg1etjKFoTqR1PQ+tJJNe5i7SuOFI7NpLaHs2xLmFs20Ra6Xo6DGtw/SCT0i3kFfvzAhgVCorx6+wo6aa9HLXGcVC4wS8tr3K4KYYjzZs5bInhmCZC6GwNTqGzByl2ONEWju7UhqWgGFaHgSR1NAfqYjlQG8tBcTTHClgUnTXP0W8OC8nBCy8wdWkd5fnhy4NzwZsUFieQXBZDsiGWL6pe44Q+BkdDFCPWyJAcbY1kqCkcu1a4lOJPuHf37vIf98LCAiWGLFLKt5Ci3k7GN/vJyUzh25NJZKYnkp2RTH7WIYoKUlGeTsfSYJR+tv81/gWzZ+5facPuAgAAAABJRU5ErkJggg==) no-repeat 0px 0px;" border="0" class="CursorMouseHover" title="Toggle write lock"></td><td align="left" style="vertical-align: top;"><img onload="this.__gwtLastUnhandledEvent=&quot;load&quot;;" src="https://192.168.1.34/accedianweb/clear.cache.gif" style="width:20px;height:20px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACaklEQVR42qWSWU9TURzEyw5hX8O+hC2BB3iAB0ggPLAIFMKWQBva0thShFgjmlQN4gdQH0QFFAIubbF2AYwYJUIVg36scY6cJuXSLfEkk/beM/d35z/nqlSKZcnKgirGZUxMjOxdrqrC7uQkVpqbo0IXMzPxqKQE5rS00N7l6mq4Z2bwe3oaBxMTuNfYGBa6kJ2N55WVOCDwSX4+jMnJl722hgb4dDqca7U4Y8Kz0VF4h4Zgq6u7Al3Ky8N6bS0Oy8vhLSqCJzcXjzMyYEpIuPCaUlOxxVR/TCac8/fn+Dj8ajV+DAzA09sLGx8OwKwEbDH5p5oa+MrK4CkshCcnB670dNxOSoJepbrwWhn93dQUfmk0OBsbg394GCd9fTjt6YGrqwt32O3N4mLssNvP9fXY57W3tBTeggK4eIirDDUXF3d5mhvc3BbJOLJ/cBDfme64uxvHHR1wtrfjbWsrjgg8FED2vU+gm/2tclx9fHzovi2Mv9nfj5OREZwKIBN+6+zE17Y2HDU1wVdRATfHdtPn5JgPUlKgD3QXbs3zBNc45hehlpZ/aT7ynpMd2TmWgz29oe5Ss4HOoq05dnKfo9j5wHspu5QA2ihtrDBxUkbqKeUMAgUk7j2jTJQuGlQvjWvUniKVI+ha7L2k5il9OKhOwl5QHxSJdqltxUuEZ0NCryQ18MaCfOueIomA3aIWqdch9jflniEYqpOn5gjqTZh3JGxWSgl1yv+2cClt8kRdckSr4s0GCX0lPSLAijJd8DJJ6IZMdj2EUXiWqHXqoew94kmbabBQmghGjezcHOu3qI7BeC1W2P+uv6CEiIiEnPTXAAAAAElFTkSuQmCC) no-repeat 0px 0px;" border="0" class="CursorMouseHover" title="Logout"></td></tr></tbody></table></td>
+</tr>
+</tbody></table>
+</div>
+
+<!-- menu -->
+
+<script type="text/javascript">
+<!--
+add_menu_layer_1('0', 'Home', '/page0_0.asp');
+add_menu_layer_2('0', '0', '', '');
+add_menu_layer_1('1', 'Port', '/page1_0.asp');
+add_menu_layer_2('1', '0', 'Configuration', '/page1_0.asp');
+add_menu_layer_2('1', '1', 'Statistics', '/page1_1.asp');
+add_menu_layer_2('1', '2', 'PHY', '/page1_4.asp');
+add_menu_layer_2('1', '3', 'SFP', '/port_sfp_cfg.asp');
+add_menu_layer_3('1', '3', '0', 'Configuration', '/port_sfp_cfg.asp');
+add_menu_layer_3('1', '3', '1', 'Status', '/page1_3.asp');
+add_menu_layer_2('1', '4', 'Cable', '/page1_5.asp');
+add_menu_layer_1('2', 'Traffic', '/traffic_rule.asp');
+add_menu_layer_2('2', '0', 'Policies', '/traffic_rule.asp');
+add_menu_layer_2('2', '2', 'Filters', '/filter_l2.asp');
+add_menu_layer_3('2', '2', '0', 'L2 filters', '/filter_l2.asp');
+add_menu_layer_3('2', '2', '1', 'IPv4 filters', '/filter_ipv4.asp');
+add_menu_layer_2('2', '3', 'Regulators', '/traffic_bwp_cfg.asp');
+add_menu_layer_3('2', '3', '0', 'Configuration', '/traffic_bwp_cfg.asp');
+add_menu_layer_3('2', '3', '1', 'Statistics', '/traffic_bwp_stats.asp');
+add_menu_layer_3('2', '3', '2', 'Envelope', '/traffic_bwp_envelope_cfg.asp');
+add_menu_layer_2('2', '4', 'Mapping', '/traffic_smap_cos.asp');
+add_menu_layer_3('2', '4', '0', 'CoS profiles', '/traffic_smap_cos.asp');
+add_menu_layer_3('2', '4', '1', 'Port CoS mappings', '/traffic_mapping_cos_pcp_map.asp');
+add_menu_layer_3('2', '4', '2', 'Bandwidth regulator sets', '/traffic_smap_sets.asp');
+add_menu_layer_2('2', '5', 'Shaping', '/traffic_shaper_v2_queue_cfg.asp');
+add_menu_layer_3('2', '5', '0', 'Queue', '/traffic_shaper_v2_queue_cfg.asp');
+add_menu_layer_4('2', '5', '0', '0', 'Configuration', '/traffic_shaper_v2_queue_cfg.asp');
+add_menu_layer_4('2', '5', '0', '1', 'Statistics', '/traffic_shaper_v2_queue_stats.asp');
+add_menu_layer_3('2', '5', '1', 'Queuing profile', '/traffic_shaper_v2_queuing_profile.asp');
+add_menu_layer_3('2', '5', '3', 'Port', '/traffic_shaper_v2_port_shaper.asp');
+add_menu_layer_4('2', '5', '3', '0', 'Shaper', '/traffic_shaper_v2_port_shaper.asp');
+add_menu_layer_4('2', '5', '3', '2', 'Default queuing profile', '/traffic_shaper_v2_port_def_profile.asp');
+add_menu_layer_2('2', '6', 'L2PT', '/traffic_l2pt_cfg.asp');
+add_menu_layer_3('2', '6', '0', 'Configuration', '/traffic_l2pt_cfg.asp');
+add_menu_layer_3('2', '6', '1', 'Statistics', '/traffic_l2pt_stats.asp');
+add_menu_layer_2('2', '7', 'VLAN', '/vlan_cfg.asp');
+add_menu_layer_3('2', '7', '0', 'VID Sets', '/vlan_cfg.asp');
+add_menu_layer_3('2', '7', '1', 'VLAN Ids', '/vlan_ids.asp');
+add_menu_layer_2('2', '8', 'Monitors', '/monitor_config.asp');
+add_menu_layer_2('2', '12', 'Configuration', '/traffic_cfg.asp');
+add_menu_layer_1('3', 'Virtual Connection', '/tim_menu.asp');
+add_menu_layer_2('3', '0', 'VCE', '/tim_vce_cfg.asp');
+add_menu_layer_3('3', '0', '0', 'Configuration', '/tim_vce_cfg.asp');
+add_menu_layer_2('3', '1', 'VCA', '/tim_vca_cfg.asp');
+add_menu_layer_3('3', '1', '1', 'Configuration', '/tim_vca_cfg.asp');
+add_menu_layer_1('4', 'System', '/page2_1.asp');
+add_menu_layer_2('4', '0', 'Configuration', '/page2_1.asp');
+add_menu_layer_3('4', '0', '0', 'Interface', '/page2_1.asp');
+add_menu_layer_3('4', '0', '1', 'DNS', '/sys_dns_edit.asp');
+add_menu_layer_3('4', '0', '2', 'Time', '/page2_3.asp');
+add_menu_layer_4('4', '0', '2', '1', 'General', '/timegeneral');
+add_menu_layer_4('4', '0', '2', '2', 'NTP', '/timentp');
+add_menu_layer_4('4', '0', '2', '3', 'PTP', '/timeptp');
+add_menu_layer_3('4', '0', '3', 'Console', '/page2_6.asp');
+add_menu_layer_3('4', '0', '4', 'Mode', '/page2_8.asp');
+add_menu_layer_3('4', '0', '5', 'Dry-contact', '/drycontact_edit.asp');
+add_menu_layer_2('4', '1', 'Alarm', '/alm_cfg_gen.asp');
+add_menu_layer_3('4', '1', '0', 'General', '/alm_cfg_gen.asp');
+add_menu_layer_3('4', '1', '1', 'Configuration', '/alm_cfg.asp');
+add_menu_layer_3('4', '1', '2', 'Chassis', '/ts_pwr.asp');
+add_menu_layer_3('4', '1', '3', 'Dry-contact', '/drycontact_status.asp');
+add_menu_layer_2('4', '2', 'Agent', '/page2_2.asp');
+add_menu_layer_3('4', '2', '0', 'Syslog', '/page2_2.asp');
+add_menu_layer_3('4', '2', '1', 'History', '/stats_ems.asp');
+add_menu_layer_3('4', '2', '2', 'SNMP', '/snmpconfig.asp');
+add_menu_layer_3('4', '2', '3', 'Traps', '/snmpTrapShow.asp');
+add_menu_layer_2('4', '3', 'Maintenance', '/page2_5.asp#tab1');
+add_menu_layer_3('4', '3', '0', 'Firmware', '/page2_5.asp#tab1');
+add_menu_layer_3('4', '3', '1', 'Certificates', '/certificates.asp');
+add_menu_layer_3('4', '3', '2', 'System tools', '/sys_tools.asp');
+add_menu_layer_2('4', '4', 'Session', '/page4_1.asp');
+add_menu_layer_3('4', '4', '0', 'Management', '/page4_1.asp');
+add_menu_layer_3('4', '4', '1', 'Users', '/page2_0.asp');
+add_menu_layer_3('4', '4', '2', 'Permissions', '/page4_3.asp');
+add_menu_layer_3('4', '4', '3', 'Configuration', '/page4_2.asp');
+add_menu_layer_3('4', '4', '4', 'RADIUS', '/radius_cfg.asp');
+add_menu_layer_3('4', '4', '5', 'TACACS+', '/sys_tacacs_plus_config.asp');
+add_menu_layer_2('4', '5', 'ACL', '/acl_main.asp');
+add_menu_layer_2('4', '8', 'IPv4', '/ipv4_main.asp');
+add_menu_layer_2('4', '9', 'DHCP relay', '/dhcp_relay_main.asp');
+add_menu_layer_2('4', '10', 'CPU OAM options', '/cpu_oam_options.asp');
+add_menu_layer_1('5', 'OAM', '/page3_0.asp');
+add_menu_layer_2('5', '0', 'Configuration', '/page3_0.asp');
+add_menu_layer_2('5', '1', 'Loopback', '/page3_1.asp');
+add_menu_layer_2('5', '2', 'Events', '/page3_2.asp');
+add_menu_layer_2('5', '3', 'Status', '/page3_3.asp');
+add_menu_layer_2('5', '4', 'Statistics', '/page3_4.asp');
+add_menu_layer_1('7', 'SOAM', '/soam_cfm_stack.asp');
+add_menu_layer_2('7', '0', 'CFM', '/soam_cfm_stack.asp');
+add_menu_layer_3('7', '0', '0', 'Stack', '/soam_cfm_stack.asp');
+add_menu_layer_3('7', '0', '1', 'MD', '/soam_md_cfg.asp');
+add_menu_layer_3('7', '0', '2', 'MA/MEG', '/soam_ma_cfg.asp');
+add_menu_layer_3('7', '0', '3', 'MEP', '/soam_mep_cfg.asp');
+add_menu_layer_4('7', '0', '3', '0', 'Configuration', '/soam_mep_cfg.asp');
+add_menu_layer_4('7', '0', '3', '1', 'Status', '/soam_mep_status.asp');
+add_menu_layer_4('7', '0', '3', '2', 'Statistics', '/soam_mep_stats.asp');
+add_menu_layer_4('7', '0', '3', '3', 'LTM', '/soam_mep_lt.asp');
+add_menu_layer_4('7', '0', '3', '4', 'LBM', '/soam_mep_lpbk.asp');
+add_menu_layer_3('7', '0', '4', 'DMM', '/soam_dmm_cfg.asp');
+add_menu_layer_4('7', '0', '4', '0', 'Configuration', '/soam_dmm_cfg.asp');
+add_menu_layer_4('7', '0', '4', '1', 'Results', '/soam_dmm_res.asp');
+add_menu_layer_3('7', '0', '5', 'Packet loss', '/soam_pl_cfg.asp');
+add_menu_layer_4('7', '0', '5', '0', 'Configuration', '/soam_pl_cfg.asp');
+add_menu_layer_4('7', '0', '5', '1', 'Results', '/soam_pl_res.asp');
+add_menu_layer_3('7', '0', '6', 'SLM', '/soam_slm_cfg.asp');
+add_menu_layer_4('7', '0', '6', '0', 'Configuration', '/soam_slm_cfg.asp');
+add_menu_layer_4('7', '0', '6', '1', 'Results', '/soam_slm_res.asp');
+add_menu_layer_3('7', '0', '7', 'Interface', '/soam_interface_cfg.asp');
+add_menu_layer_3('7', '0', '8', 'VSP', '/soam_vsp_cfg.asp');
+add_menu_layer_4('7', '0', '8', '0', 'Configuration', '/soam_vsp_cfg.asp');
+add_menu_layer_4('7', '0', '8', '1', 'Results', '/soam_vsp_res.asp');
+add_menu_layer_3('7', '0', '9', 'Defaults', '/soam_defaults.asp');
+add_menu_layer_2('7', '1', 'PAA', '/paa_cfg.asp');
+add_menu_layer_3('7', '1', '0', 'Configuration', '/paa_cfg.asp');
+add_menu_layer_3('7', '1', '1', 'Status', '/paa_status.asp');
+add_menu_layer_3('7', '1', '2', 'Results', '/paa_results.asp');
+add_menu_layer_2('7', '2', 'SA', '/sa_cfg.asp');
+add_menu_layer_3('7', '2', '0', 'Configuration', '/sa_cfg.asp');
+add_menu_layer_3('7', '2', '1', 'Counters', '/sa_counters.asp');
+add_menu_layer_2('7', '3', 'TWAMP', '/twamp_generator_cfg.asp');
+add_menu_layer_3('7', '3', '0', 'Generator', '/twamp_generator_cfg.asp');
+add_menu_layer_4('7', '3', '0', '0', 'Configuration', '/twamp_generator_cfg.asp');
+add_menu_layer_4('7', '3', '0', '1', 'Status', '/twamp_generator_status.asp');
+add_menu_layer_4('7', '3', '0', '2', 'Results', '/twamp_generator_results.asp');
+add_menu_layer_3('7', '3', '1', 'Reflector', '/twamp_cfg.asp');
+add_menu_layer_4('7', '3', '1', '0', 'Configuration', '/twamp_cfg.asp');
+add_menu_layer_4('7', '3', '1', '1', 'Statistics', '/twamp_statistics.asp');
+add_menu_layer_1('8', 'Loop Detection', '/loopdetection_menu.asp');
+add_menu_layer_2('8', '0', 'Configuration', '/loopdetection_cfg.asp');
+add_menu_layer_2('8', '1', 'Status', '/loopdetection_status.asp');
+add_menu_layer_2('8', '2', 'Counters', '/loopdetection_counter.asp');
+add_menu_layer_2('8', '3', 'Diagnostic Tool', '/loopdetection_tool.asp');
+add_menu_layer_3('8', '0', '0', 'Instances', '/loopdetection_cfg.asp');
+add_menu_layer_3('8', '2', '0', 'Instances', '/loopdetection_counter.asp');
+add_menu_layer_3('8', '2', '1', 'Global', '/loopdetection_counter_global.asp');
+add_menu_layer_1('9', 'Protection', '/prot_lacp_cfg.asp');
+add_menu_layer_2('9', '0', 'LACP', '/prot_lacp_cfg.asp');
+add_menu_layer_3('9', '0', '0', 'Configuration', '/prot_lacp_cfg.asp');
+add_menu_layer_3('9', '0', '1', 'Status', '/prot_lacp_status.asp');
+add_menu_layer_3('9', '0', '2', 'Statistics', '/prot_lacp_statistics.asp');
+add_menu_layer_2('9', '2', 'ERP', '/prot_G8032_cfg.asp');
+add_menu_layer_3('9', '2', '0', 'Configuration', '/prot_G8032_cfg.asp');
+add_menu_layer_3('9', '2', '1', 'Status', '/prot_G8032_status.asp');
+add_menu_layer_3('9', '2', '2', 'Statistics', '/prot_G8032_statistics.asp');
+add_menu_layer_3('9', '2', '3', 'Vlan fdb', '/prot_G8032_vlan.asp');
+add_menu_layer_1('10', 'SAT', '/apg_test.asp');
+add_menu_layer_2('10', '0', 'RFC-2544', '/apg_test.asp');
+add_menu_layer_3('10', '0', '0', 'Generator', '/apg_test.asp');
+add_menu_layer_4('10', '0', '0', '0', 'Configuration', '/apg_test.asp');
+add_menu_layer_4('10', '0', '0', '1', 'Results', '/apg_measurements.asp');
+add_menu_layer_3('10', '0', '1', 'Monitor', '/apgInspecConfig?idx=3');
+add_menu_layer_4('10', '0', '1', '0', 'Configuration', '/apgInspecConfig?idx=3');
+add_menu_layer_4('10', '0', '1', '1', 'Results', '/apg_inspec_status.asp');
+add_menu_layer_3('10', '0', '2', 'Testsuite', '/apg_suite.asp');
+add_menu_layer_4('10', '0', '2', '0', 'Configuration', '/apg_suite.asp');
+add_menu_layer_4('10', '0', '2', '1', 'Reports', '/apg_reports.asp');
+add_menu_layer_2('10', '1', 'Y.1564', '/y1564_cfg.asp');
+add_menu_layer_3('10', '1', '0', 'Configuration', '/y1564_cfg.asp');
+add_menu_layer_3('10', '1', '1', 'Results', '/y1564_act.asp');
+add_menu_layer_2('10', '2', 'Protocol', '/sam_proto.asp');
+add_menu_layer_3('10', '2', '0', 'Configuration', '/sam_proto.asp');
+add_menu_layer_3('10', '2', '1', 'Statistics', '/samProtoStats.asp');
+add_menu_layer_3('10', '2', '2', 'Sessions', '/sam_proto_sessions.asp');
+add_menu_layer_2('10', '3', 'Reporting', '/sam_reporting.asp');
+add_menu_layer_1('11', 'Plug & Go', '/beacon_configuration.asp');
+add_menu_layer_2('11', '0', 'Layer-3', '/beacon_configuration.asp');
+add_menu_layer_3('11', '0', '0', 'Configuration', '/beacon_configuration.asp');
+add_menu_layer_2('11', '1', 'Inventory', '/inventoryconfig.asp');
+add_menu_layer_1('12', 'Show', '/alm_status.asp');
+add_menu_layer_2('12', '0', 'CPU usage', '/cpuUsage.asp');
+add_menu_layer_2('12', '1', 'Alarm', '/alm_status.asp');
+add_menu_layer_2('12', '2', 'LLDP', '/lldpconfig.asp');
+show_menu('1-3-1');
+
+-->
+</script><table align="CENTER" cellspacing="0" width="102%" bgcolor="gray"><tbody><tr>
+<td align="center" width="200"></td>
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/page0_0.asp">Home</a></td> 
+<td align="center" width="200" bgcolor="gainsboro"><a class="menu" href="https://192.168.1.34/page1_0.asp">Port</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/traffic_rule.asp">Traffic</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/tim_menu.asp">Virtual Connection</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/page2_1.asp">System</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/page3_0.asp">OAM</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/soam_cfm_stack.asp">SOAM</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/loopdetection_menu.asp">Loop Detection</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/prot_lacp_cfg.asp">Protection</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/apg_test.asp">SAT</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/beacon_configuration.asp">Plug &amp; Go</a></td> 
+<td align="center" width="200" bgcolor="gray"><a class="menu" href="https://192.168.1.34/alm_status.asp">Show</a></td> 
+<td align="center" width="200"></td>
+</tr></tbody></table>
+
+<table align="CENTER" cellspacing="0" width="102%" bgcolor="darkgray"><tbody><tr>
+<td align="center" width="200"></td>
+<td align="center" width="200" bgcolor="darkgray"><a class="menu" href="https://192.168.1.34/page1_0.asp">Configuration</a></td> 
+<td align="center" width="200" bgcolor="darkgray"><a class="menu" href="https://192.168.1.34/page1_1.asp">Statistics</a></td> 
+<td align="center" width="200" bgcolor="darkgray"><a class="menu" href="https://192.168.1.34/page1_4.asp">PHY</a></td> 
+<td align="center" width="200" bgcolor="gainsboro"><a class="menu" href="https://192.168.1.34/port_sfp_cfg.asp">SFP</a></td> 
+<td align="center" width="200" bgcolor="darkgray"><a class="menu" href="https://192.168.1.34/page1_5.asp">Cable</a></td> 
+<td align="center" width="200"></td>
+</tr></tbody></table>
+
+<table align="CENTER" cellspacing="0" width="102%" bgcolor="#C0C0C0"><tbody><tr>
+<td align="center" width="200"></td>
+<td align="center" width="200" bgcolor="#C0C0C0"><a class="menu" href="https://192.168.1.34/port_sfp_cfg.asp">Configuration</a></td> 
+<td align="center" width="200" bgcolor="gainsboro"><a class="menu" href="https://192.168.1.34/page1_3.asp">Status</a></td> 
+<td align="center" width="200"></td>
+</tr></tbody></table>
+
+
+
+<!-- Start of page-specific body -->
+<br><br>
+
+
+<script type="text/javascript">
+<!--
+table_header ('600','darkgray', 'SFP-1 Status','Click here for Help','/help/tools_sfp_sum.html');
+
+-->
+</script><table style="table-layout:fixed ; width:600px" align="center" cellspacing="5" bgcolor="darkgray">
+<tbody><tr><td align="left" class="title">SFP-1 Status</td>
+<td align="right" width="25"><a title="Click here for Help" onclick="makeRemote(&#39;/help/tools_sfp_sum.html&#39;);" href="https://192.168.1.34/portsfp?idx=1#">?</a></td>
+</tr>
+</tbody></table>
+
+<div id="sfp" style="display:block">
+<table align="center" cellspacing="5" width="600" bgcolor="snow">
+<tbody><tr>
+<td class="subtitle" colspan="4">SFP information:</td>
+</tr>
+
+<tr>
+<td class="elem">Connector Type:</td>
+<td class="content">LC</td>
+<td class="elem">Vendor:</td>
+<td class="content">FINISAR CORP.   </td>
+</tr>
+
+<tr>
+<td class="elem">Wave Length:</td>
+<td class="content">1310 nm</td>
+<td class="elem">Part number:</td>
+<td class="content">FTLF1436W4BTV</td>
+</tr>
+
+<tr>
+<td class="elem">Serial number:</td>
+<td class="content">P05CDBP         </td>
+<td class="elem">Revision:</td>
+<td class="content">A   </td>
+</tr>
+
+<tr>
+<td class="elem">SFP present:</td>
+<td class="content">yes</td>
+<td class="elem">Diagnostics:</td>
+<td class="content">supported</td>
+</tr>
+
+<tr>
+<td class="elem">Calibration:</td>
+<td class="content">internal</td>
+<td class="elem">Thresholds:</td>
+<td class="content">supported</td>
+</tr>
+
+<tr>
+<td class="elem">Speed:</td>
+</tr>
+
+<tr>
+<td class="elem"><span style="text-align: left; float: right; width: 80px;">Actual:</span></td>
+<td class="content">10G</td>
+<td class="elem"> </td>
+<td class="content"> </td>
+</tr>
+
+<tr>
+<td class="elem"><span style="text-align: left; float: right; width: 80px;">Detected:</span></td>
+<td class="content">10G</td>
+<td class="elem"> </td>
+<td class="content"> </td>
+</tr>
+
+</tbody></table>
+</div>
+<div id="sfp_mon" style="display:block">
+<table align="center" cellspacing="5" width="600" bgcolor="snow">
+<tbody><tr>
+<td class="subtitle" colspan="4">Monitoring information:</td>
+</tr>
+
+<tr>
+<td class="elem">Temperature:</td>
+<td class="content">23 Celcius</td>
+<td class="elem">Laser bias current:</td>
+<td class="content">21612 micro-amps</td>
+</tr>
+
+<tr>
+<td class="elem">Transmit power:</td>
+<td class="content">-1.58
+ dBm</td>
+<td class="elem">Receive power:</td>
+<td class="content">-1.89
+ dBm</td>
+</tr>
+
+<tr>
+<td class="elem">Supply voltage:</td>
+<td class="content">3380 milli-volts</td>
+<td class="elem"></td>
+<td class="content"></td>
+</tr>
+
+</tbody></table>
+</div>
+<br><br>
+
+<script type="text/javascript">
+<!--
+table_header ('600','darkgray', 'SFP thresholds','Click here for Help','/help/tools_sfp_sum.html');
+
+-->
+</script><table style="table-layout:fixed ; width:600px" align="center" cellspacing="5" bgcolor="darkgray">
+<tbody><tr><td align="left" class="title">SFP thresholds</td>
+<td align="right" width="25"><a title="Click here for Help" onclick="makeRemote(&#39;/help/tools_sfp_sum.html&#39;);" href="https://192.168.1.34/portsfp?idx=1#">?</a></td>
+</tr>
+</tbody></table>
+
+<div id="sfp_thresh" style="display:block">
+<table align="center" cellspacing="5" width="600" bgcolor="snow">
+<tbody><tr>
+<td class="subtitle" colspan="4"> Temperature (23 Celsius):</td>
+</tr>
+
+<tr>
+<td class="elem">High alarm:</td>
+<td class="content">95 Celcius</td>
+<td class="elem">Low alarm:</td>
+<td class="content">-48 Celcius</td>
+</tr>
+
+<tr>
+<td class="elem">High warning:</td>
+<td class="content">90 Celcius</td>
+<td class="elem">Low warning:</td>
+<td class="content">-43 Celcius</td>
+</tr>
+
+<tr>
+<td class="subtitle" colspan="4"> Vcc (3380 milli-volts):</td>
+</tr>
+
+<tr>
+<td class="elem">High alarm:</td>
+<td class="content">3600 milli-volts</td>
+<td class="elem">Low alarm:</td>
+<td class="content">3000 milli-volts</td>
+</tr>
+
+<tr>
+<td class="elem">High warning:</td>
+<td class="content">3500 milli-volts</td>
+<td class="elem">Low warning:</td>
+<td class="content">3100 milli-volts</td>
+</tr>
+
+<tr>
+<td class="subtitle" colspan="4"> Laser bias current (21612 micro-amps):</td>
+</tr>
+
+<tr>
+<td class="elem">High alarm:</td>
+<td class="content">70000 micro-amps</td>
+<td class="elem">Low alarm:</td>
+<td class="content">1000 micro-amps</td>
+</tr>
+
+<tr>
+<td class="elem">High warning:</td>
+<td class="content">65000 micro-amps</td>
+<td class="elem">Low warning:</td>
+<td class="content">2000 micro-amps</td>
+</tr>
+
+<tr>
+<td class="subtitle" colspan="4"> Tx power (-1.58
+ dBm):</td>
+</tr>
+
+<tr>
+<td class="elem">High alarm:</td>
+<td class="content">4.00
+ dBm</td>
+<td class="elem">Low alarm:</td>
+<td class="content">-9.00
+ dBm</td>
+</tr>
+
+<tr>
+<td class="elem">High warning:</td>
+<td class="content">3.00
+ dBm</td>
+<td class="elem">Low warning:</td>
+<td class="content">-8.00
+ dBm</td>
+</tr>
+
+<tr>
+<td class="subtitle" colspan="4"> Rx power (-1.89
+ dBm):</td>
+</tr>
+
+<tr>
+<td class="elem">High alarm:</td>
+<td class="content">3.00
+ dBm</td>
+<td class="elem">Low alarm:</td>
+<td class="content">-20.00
+ dBm</td>
+</tr>
+
+<tr>
+<td class="elem">High warning:</td>
+<td class="content">2.00
+ dBm</td>
+<td class="elem">Low warning:</td>
+<td class="content">-18.01
+ dBm</td>
+</tr>
+
+</tbody></table>
+</div>
+<br><br>
+<div id="mem_a0" style="display:block">
+
+<script type="text/javascript">
+<!--
+table_header ('600','darkgray', 'SFP memory (Location : A0H)','Click here for Help','/help/tools_sfp_sum.html');
+
+-->
+</script><table style="table-layout:fixed ; width:600px" align="center" cellspacing="5" bgcolor="darkgray">
+<tbody><tr><td align="left" class="title">SFP memory (Location : A0H)</td>
+<td align="right" width="25"><a title="Click here for Help" onclick="makeRemote(&#39;/help/tools_sfp_sum.html&#39;);" href="https://192.168.1.34/portsfp?idx=1#">?</a></td>
+</tr>
+</tbody></table>
+
+<table align="center" cellspacing="5" width="600" bgcolor="snow">
+<tbody><tr><td align="center">
+<textarea style="width: 580px; height: 150px;" wrap="off">     00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+000: 03 04 07 00 00 00 00 12 00 01 00 06 FF 00 0A 64     * ...............d *
+016: 00 00 00 00 46 49 4E 49 53 41 52 20 43 4F 52 50     * ....FINISAR CORP *
+032: 2E 20 20 20 03 00 90 65 46 54 4C 46 31 34 33 36     * .   ...eFTLF1436 *
+048: 57 34 42 54 56 20 20 20 41 20 20 20 05 1E 00 0F     * W4BTV   A   .... *
+064: 0E 3A 70 00 50 30 35 43 44 42 50 20 20 20 20 20     * .:p.P05CDBP      *
+080: 20 20 20 20 31 38 30 38 31 38 20 20 68 FA 09 8B     *     180818  h... *
+096: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+112: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+</textarea>
+</td>
+</tr></tbody></table>
+</div>
+<br><br>
+<div id="mem_a2" style="display:block">
+
+<script type="text/javascript">
+<!--
+table_header ('600','darkgray', 'Monitor memory (Location : A2H)','Click here for Help','/help/tools_sfp_sum.html');
+
+-->
+</script><table style="table-layout:fixed ; width:600px" align="center" cellspacing="5" bgcolor="darkgray">
+<tbody><tr><td align="left" class="title">Monitor memory (Location : A2H)</td>
+<td align="right" width="25"><a title="Click here for Help" onclick="makeRemote(&#39;/help/tools_sfp_sum.html&#39;);" href="https://192.168.1.34/portsfp?idx=1#">?</a></td>
+</tr>
+</tbody></table>
+
+<table align="center" cellspacing="5" width="600" bgcolor="snow">
+<tbody><tr><td align="center">
+<textarea style="width: 580px; height: 150px;" wrap="off">     00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+000: 5F 00 D0 00 5A 00 D5 00 8C A0 75 30 88 B8 79 18     * _...Z.....u0..y. *
+016: 88 B8 01 F4 7E F4 03 E8 62 1F 04 EB 4D FE 06 31     * ....~...b...M..1 *
+032: 4D F1 00 64 3D E9 00 9E 55 00 F6 00 50 00 FB 00     * M..d=...U...P... *
+048: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+064: 00 00 00 00 3F 80 00 00 00 00 00 00 01 00 00 00     * ....?........... *
+080: 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 43     * ...............C *
+096: 17 05 84 0F 2A 36 1B 2C 19 4C 26 BF 00 00 00 00     * ....*6.,.L&amp;..... *
+112: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01     * ................ *
+</textarea>
+</td>
+</tr></tbody></table>
+</div>
+<div id="mem_ac" style="display:none">
+
+<script type="text/javascript">
+<!--
+table_header ('600','darkgray', 'Copper PHY config memory (Location : ACH)','Click here for Help','/help/port_sfp_copper.html');
+
+-->
+</script><table style="table-layout:fixed ; width:600px" align="center" cellspacing="5" bgcolor="darkgray">
+<tbody><tr><td align="left" class="title">Copper PHY config memory (Location : ACH)</td>
+<td align="right" width="25"><a title="Click here for Help" onclick="makeRemote(&#39;/help/port_sfp_copper.html&#39;);" href="https://192.168.1.34/portsfp?idx=1#">?</a></td>
+</tr>
+</tbody></table>
+
+<table align="center" cellspacing="5" width="600" bgcolor="snow">
+<tbody><tr><td align="center">
+<textarea style="width: 580px; height: 150px;" wrap="off">     00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+016: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+032: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+048: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+064: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+096: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+112: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00     * ................ *
+</textarea>
+</td>
+</tr></tbody></table>
+</div>
+
+<!-- End of page-specific body -->
+<br><br>
+
+
+<iframe src="javascript:&#39;&#39;" id="accedianweb" tabindex="-1" style="position: absolute; width: 0px; height: 0px; border: none;" src="./SFP_Port-1-Finisar_files/saved_resource.html"></iframe></body></html>
