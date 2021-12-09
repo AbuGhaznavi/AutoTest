@@ -195,5 +195,156 @@ namespace AutoTest
             return responseFromServer;
         }
 
+        public string getPort5()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/portsfp?idx=" + (idx + 4).ToString());
+            request.CookieContainer = container;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            String responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return responseFromServer;
+        }
+
+        public string getPort6()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/portsfp?idx=" + (idx + 5).ToString());
+            request.CookieContainer = container;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            String responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return responseFromServer;
+        }
+
+        public string getPort7()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/portsfp?idx=" + (idx + 6).ToString());
+            request.CookieContainer = container;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            String responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return responseFromServer;
+        }
+
+        public string getPort8()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/portsfp?idx=" + (idx + 7).ToString());
+            request.CookieContainer = container;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            String responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return responseFromServer;
+        }
+
+        public string getPort9()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/portsfp?idx=" + (idx + 8).ToString());
+            request.CookieContainer = container;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            String responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return responseFromServer;
+        }
+
+        public string getPort10()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/portsfp?idx=" + (idx + 9).ToString());
+            request.CookieContainer = container;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            String responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return responseFromServer;
+        }
+
+        public string getPort11()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/portsfp?idx=" + (idx + 10).ToString());
+            request.CookieContainer = container;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            String responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return responseFromServer;
+        }
+
+        public string getPort12()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/portsfp?idx=" + (idx + 11).ToString());
+            request.CookieContainer = container;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            String responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return responseFromServer;
+        }
     }
 }

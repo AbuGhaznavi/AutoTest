@@ -7,6 +7,8 @@ namespace AutoTest
 {
     public partial class add : Form
     {
+
+        public MetronodeLTPortsForm metronodeLTForm1;
         Output output = new Output();
         Connection connection = new Connection();
         private AutoResetEvent _reset1 = new AutoResetEvent(false);
@@ -161,25 +163,56 @@ namespace AutoTest
         //Checks what ports are selected and starts the corresponding workers/threads
         private void startTest()
         {
-            if (port1ck.Checked)
+            if (metronodeLTForm1.checkBox1.Checked)
             {
                 sfp1Worker.RunWorkerAsync();
             }
-            if (port2ck.Checked)
+            if (metronodeLTForm1.checkBox2.Checked)
             {
                 sfp2Worker.RunWorkerAsync();
             }
-            if (port3ck.Checked)
+            if (metronodeLTForm1.checkBox3.Checked)
             {
                 sfp3Worker.RunWorkerAsync();
             }
-            if (port4ck.Checked)
+            if (metronodeLTForm1.checkBox4.Checked)
             {
                 sfp4Worker.RunWorkerAsync();
             }
+            if (metronodeLTForm1.checkBox5.Checked)
+            {
+                sfp5Worker.RunWorkerAsync();
+            }
+            if (metronodeLTForm1.checkBox6.Checked)
+            {
+                sfp6Worker.RunWorkerAsync();
+            }
+            if (metronodeLTForm1.checkBox7.Checked)
+            {
+                sfp7Worker.RunWorkerAsync();
+            }
+            if (metronodeLTForm1.checkBox8.Checked)
+            {
+                sfp8Worker.RunWorkerAsync();
+            }
+            if (metronodeLTForm1.checkBox9.Checked)
+            {
+                sfp9Worker.RunWorkerAsync();
+            }
+            if (metronodeLTForm1.checkBox10.Checked)
+            {
+                sfp10Worker.RunWorkerAsync();
+            }
+            if (metronodeLTForm1.checkBox11.Checked)
+            {
+                sfp11Worker.RunWorkerAsync();
+            }
+            if (metronodeLTForm1.checkBox12.Checked)
+            {
+                sfp12Worker.RunWorkerAsync();
+            }
         }
 
-        
         private void sfp1Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             int temp = 0;
@@ -654,6 +687,960 @@ namespace AutoTest
             _reset4.Set();
         }
 
+        private void sfp5Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int temp = 0;
+            int newtemp = 0;
+            int vcc = 0;
+            int newvcc = 0;
+            int bias = 0;
+            int newbias = 0;
+            float tx = 0;
+            float newtx = 0;
+            float rx = 0;
+            float newrx = 0;
+            String html, serial;
+            int row, oldrow = -1;
+            while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
+            {
+                html = connection.getPort1();
+                newtemp = Parser.getTemp(html);
+                newvcc = Parser.getVcc(html);
+                newbias = Parser.getBias(html);
+                newtx = Parser.getTx(html);
+                newrx = Parser.getRx(html);
+                if (Parser.present(html))
+                {
+                    serial = Parser.getSerial(html);
+                    if (serial.Length >= 1)
+                    {
+                        row = Grid.findSerial(dataGridView1, serial);
+                        if (oldrow == -1)
+                        {
+                            if (row != -1)
+                            {
+                                if (!Grid.tested(dataGridView1, row))
+                                {
+                                    dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                    oldrow = row;
+                                    if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    {
+                                        String partnum = Parser.getPart(html);
+                                        String vendor = Parser.getVendor(html);
+                                        String rev = Parser.getRev(html);
+                                        String spd = Parser.getSpd(html);
+                                        String wl = Parser.getWL(html);
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        {
+                                            Image image = null;
+                                            Thread renderThread = new Thread(() => {
+                                                image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                            });
+                                            renderThread.SetApartmentState(ApartmentState.STA);
+                                            renderThread.Start();
+                                            renderThread.Join();
+                                            Image saveImage = (Image)image.Clone();
+                                            pictureBox1.Image = image;
+                                            output.saveReport(saveImage, partnum, serial);
+                                            dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                            oldrow = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (row == oldrow)
+                            {
+                                dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                oldrow = row;
+                                if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                {
+                                    String partnum = Parser.getPart(html);
+                                    String vendor = Parser.getVendor(html);
+                                    String rev = Parser.getRev(html);
+                                    String spd = Parser.getSpd(html);
+                                    String wl = Parser.getWL(html);
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    {
+                                        Image image = null;
+                                        Thread renderThread = new Thread(() => {
+                                            image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                        });
+                                        renderThread.SetApartmentState(ApartmentState.STA);
+                                        renderThread.Start();
+                                        renderThread.Join();
+                                        Image saveImage = (Image)image.Clone();
+                                        pictureBox1.Image = image;
+                                        output.saveReport(saveImage, partnum, serial);
+                                        dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                        oldrow = -1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                                oldrow = -1;
+                            }
+                        }
+                    }
+                    else if (oldrow != -1)
+                    {
+                        dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                        oldrow = -1;
+                    }
+                }
+                else if (oldrow != -1)
+                {
+                    dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                    oldrow = -1;
+                }
+                temp = newtemp;
+                vcc = newvcc;
+                bias = newbias;
+                tx = newtx;
+                rx = newrx;
+            }
+            _reset1.Set();
+        }
+
+        private void sfp6Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int temp = 0;
+            int newtemp = 0;
+            int vcc = 0;
+            int newvcc = 0;
+            int bias = 0;
+            int newbias = 0;
+            float tx = 0;
+            float newtx = 0;
+            float rx = 0;
+            float newrx = 0;
+            String html, serial;
+            int row, oldrow = -1;
+            while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
+            {
+                html = connection.getPort1();
+                newtemp = Parser.getTemp(html);
+                newvcc = Parser.getVcc(html);
+                newbias = Parser.getBias(html);
+                newtx = Parser.getTx(html);
+                newrx = Parser.getRx(html);
+                if (Parser.present(html))
+                {
+                    serial = Parser.getSerial(html);
+                    if (serial.Length >= 1)
+                    {
+                        row = Grid.findSerial(dataGridView1, serial);
+                        if (oldrow == -1)
+                        {
+                            if (row != -1)
+                            {
+                                if (!Grid.tested(dataGridView1, row))
+                                {
+                                    dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                    oldrow = row;
+                                    if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    {
+                                        String partnum = Parser.getPart(html);
+                                        String vendor = Parser.getVendor(html);
+                                        String rev = Parser.getRev(html);
+                                        String spd = Parser.getSpd(html);
+                                        String wl = Parser.getWL(html);
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        {
+                                            Image image = null;
+                                            Thread renderThread = new Thread(() => {
+                                                image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                            });
+                                            renderThread.SetApartmentState(ApartmentState.STA);
+                                            renderThread.Start();
+                                            renderThread.Join();
+                                            Image saveImage = (Image)image.Clone();
+                                            pictureBox1.Image = image;
+                                            output.saveReport(saveImage, partnum, serial);
+                                            dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                            oldrow = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (row == oldrow)
+                            {
+                                dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                oldrow = row;
+                                if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                {
+                                    String partnum = Parser.getPart(html);
+                                    String vendor = Parser.getVendor(html);
+                                    String rev = Parser.getRev(html);
+                                    String spd = Parser.getSpd(html);
+                                    String wl = Parser.getWL(html);
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    {
+                                        Image image = null;
+                                        Thread renderThread = new Thread(() => {
+                                            image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                        });
+                                        renderThread.SetApartmentState(ApartmentState.STA);
+                                        renderThread.Start();
+                                        renderThread.Join();
+                                        Image saveImage = (Image)image.Clone();
+                                        pictureBox1.Image = image;
+                                        output.saveReport(saveImage, partnum, serial);
+                                        dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                        oldrow = -1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                                oldrow = -1;
+                            }
+                        }
+                    }
+                    else if (oldrow != -1)
+                    {
+                        dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                        oldrow = -1;
+                    }
+                }
+                else if (oldrow != -1)
+                {
+                    dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                    oldrow = -1;
+                }
+                temp = newtemp;
+                vcc = newvcc;
+                bias = newbias;
+                tx = newtx;
+                rx = newrx;
+            }
+            _reset1.Set();
+        }
+
+        private void sfp7Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int temp = 0;
+            int newtemp = 0;
+            int vcc = 0;
+            int newvcc = 0;
+            int bias = 0;
+            int newbias = 0;
+            float tx = 0;
+            float newtx = 0;
+            float rx = 0;
+            float newrx = 0;
+            String html, serial;
+            int row, oldrow = -1;
+            while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
+            {
+                html = connection.getPort1();
+                newtemp = Parser.getTemp(html);
+                newvcc = Parser.getVcc(html);
+                newbias = Parser.getBias(html);
+                newtx = Parser.getTx(html);
+                newrx = Parser.getRx(html);
+                if (Parser.present(html))
+                {
+                    serial = Parser.getSerial(html);
+                    if (serial.Length >= 1)
+                    {
+                        row = Grid.findSerial(dataGridView1, serial);
+                        if (oldrow == -1)
+                        {
+                            if (row != -1)
+                            {
+                                if (!Grid.tested(dataGridView1, row))
+                                {
+                                    dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                    oldrow = row;
+                                    if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    {
+                                        String partnum = Parser.getPart(html);
+                                        String vendor = Parser.getVendor(html);
+                                        String rev = Parser.getRev(html);
+                                        String spd = Parser.getSpd(html);
+                                        String wl = Parser.getWL(html);
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        {
+                                            Image image = null;
+                                            Thread renderThread = new Thread(() => {
+                                                image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                            });
+                                            renderThread.SetApartmentState(ApartmentState.STA);
+                                            renderThread.Start();
+                                            renderThread.Join();
+                                            Image saveImage = (Image)image.Clone();
+                                            pictureBox1.Image = image;
+                                            output.saveReport(saveImage, partnum, serial);
+                                            dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                            oldrow = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (row == oldrow)
+                            {
+                                dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                oldrow = row;
+                                if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                {
+                                    String partnum = Parser.getPart(html);
+                                    String vendor = Parser.getVendor(html);
+                                    String rev = Parser.getRev(html);
+                                    String spd = Parser.getSpd(html);
+                                    String wl = Parser.getWL(html);
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    {
+                                        Image image = null;
+                                        Thread renderThread = new Thread(() => {
+                                            image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                        });
+                                        renderThread.SetApartmentState(ApartmentState.STA);
+                                        renderThread.Start();
+                                        renderThread.Join();
+                                        Image saveImage = (Image)image.Clone();
+                                        pictureBox1.Image = image;
+                                        output.saveReport(saveImage, partnum, serial);
+                                        dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                        oldrow = -1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                                oldrow = -1;
+                            }
+                        }
+                    }
+                    else if (oldrow != -1)
+                    {
+                        dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                        oldrow = -1;
+                    }
+                }
+                else if (oldrow != -1)
+                {
+                    dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                    oldrow = -1;
+                }
+                temp = newtemp;
+                vcc = newvcc;
+                bias = newbias;
+                tx = newtx;
+                rx = newrx;
+            }
+            _reset1.Set();
+        }
+
+        private void sfp8Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int temp = 0;
+            int newtemp = 0;
+            int vcc = 0;
+            int newvcc = 0;
+            int bias = 0;
+            int newbias = 0;
+            float tx = 0;
+            float newtx = 0;
+            float rx = 0;
+            float newrx = 0;
+            String html, serial;
+            int row, oldrow = -1;
+            while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
+            {
+                html = connection.getPort1();
+                newtemp = Parser.getTemp(html);
+                newvcc = Parser.getVcc(html);
+                newbias = Parser.getBias(html);
+                newtx = Parser.getTx(html);
+                newrx = Parser.getRx(html);
+                if (Parser.present(html))
+                {
+                    serial = Parser.getSerial(html);
+                    if (serial.Length >= 1)
+                    {
+                        row = Grid.findSerial(dataGridView1, serial);
+                        if (oldrow == -1)
+                        {
+                            if (row != -1)
+                            {
+                                if (!Grid.tested(dataGridView1, row))
+                                {
+                                    dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                    oldrow = row;
+                                    if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    {
+                                        String partnum = Parser.getPart(html);
+                                        String vendor = Parser.getVendor(html);
+                                        String rev = Parser.getRev(html);
+                                        String spd = Parser.getSpd(html);
+                                        String wl = Parser.getWL(html);
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        {
+                                            Image image = null;
+                                            Thread renderThread = new Thread(() => {
+                                                image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                            });
+                                            renderThread.SetApartmentState(ApartmentState.STA);
+                                            renderThread.Start();
+                                            renderThread.Join();
+                                            Image saveImage = (Image)image.Clone();
+                                            pictureBox1.Image = image;
+                                            output.saveReport(saveImage, partnum, serial);
+                                            dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                            oldrow = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (row == oldrow)
+                            {
+                                dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                oldrow = row;
+                                if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                {
+                                    String partnum = Parser.getPart(html);
+                                    String vendor = Parser.getVendor(html);
+                                    String rev = Parser.getRev(html);
+                                    String spd = Parser.getSpd(html);
+                                    String wl = Parser.getWL(html);
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    {
+                                        Image image = null;
+                                        Thread renderThread = new Thread(() => {
+                                            image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                        });
+                                        renderThread.SetApartmentState(ApartmentState.STA);
+                                        renderThread.Start();
+                                        renderThread.Join();
+                                        Image saveImage = (Image)image.Clone();
+                                        pictureBox1.Image = image;
+                                        output.saveReport(saveImage, partnum, serial);
+                                        dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                        oldrow = -1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                                oldrow = -1;
+                            }
+                        }
+                    }
+                    else if (oldrow != -1)
+                    {
+                        dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                        oldrow = -1;
+                    }
+                }
+                else if (oldrow != -1)
+                {
+                    dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                    oldrow = -1;
+                }
+                temp = newtemp;
+                vcc = newvcc;
+                bias = newbias;
+                tx = newtx;
+                rx = newrx;
+            }
+            _reset1.Set();
+        }
+
+        private void sfp9Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int temp = 0;
+            int newtemp = 0;
+            int vcc = 0;
+            int newvcc = 0;
+            int bias = 0;
+            int newbias = 0;
+            float tx = 0;
+            float newtx = 0;
+            float rx = 0;
+            float newrx = 0;
+            String html, serial;
+            int row, oldrow = -1;
+            while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
+            {
+                html = connection.getPort1();
+                newtemp = Parser.getTemp(html);
+                newvcc = Parser.getVcc(html);
+                newbias = Parser.getBias(html);
+                newtx = Parser.getTx(html);
+                newrx = Parser.getRx(html);
+                if (Parser.present(html))
+                {
+                    serial = Parser.getSerial(html);
+                    if (serial.Length >= 1)
+                    {
+                        row = Grid.findSerial(dataGridView1, serial);
+                        if (oldrow == -1)
+                        {
+                            if (row != -1)
+                            {
+                                if (!Grid.tested(dataGridView1, row))
+                                {
+                                    dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                    oldrow = row;
+                                    if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    {
+                                        String partnum = Parser.getPart(html);
+                                        String vendor = Parser.getVendor(html);
+                                        String rev = Parser.getRev(html);
+                                        String spd = Parser.getSpd(html);
+                                        String wl = Parser.getWL(html);
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        {
+                                            Image image = null;
+                                            Thread renderThread = new Thread(() => {
+                                                image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                            });
+                                            renderThread.SetApartmentState(ApartmentState.STA);
+                                            renderThread.Start();
+                                            renderThread.Join();
+                                            Image saveImage = (Image)image.Clone();
+                                            pictureBox1.Image = image;
+                                            output.saveReport(saveImage, partnum, serial);
+                                            dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                            oldrow = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (row == oldrow)
+                            {
+                                dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                oldrow = row;
+                                if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                {
+                                    String partnum = Parser.getPart(html);
+                                    String vendor = Parser.getVendor(html);
+                                    String rev = Parser.getRev(html);
+                                    String spd = Parser.getSpd(html);
+                                    String wl = Parser.getWL(html);
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    {
+                                        Image image = null;
+                                        Thread renderThread = new Thread(() => {
+                                            image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                        });
+                                        renderThread.SetApartmentState(ApartmentState.STA);
+                                        renderThread.Start();
+                                        renderThread.Join();
+                                        Image saveImage = (Image)image.Clone();
+                                        pictureBox1.Image = image;
+                                        output.saveReport(saveImage, partnum, serial);
+                                        dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                        oldrow = -1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                                oldrow = -1;
+                            }
+                        }
+                    }
+                    else if (oldrow != -1)
+                    {
+                        dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                        oldrow = -1;
+                    }
+                }
+                else if (oldrow != -1)
+                {
+                    dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                    oldrow = -1;
+                }
+                temp = newtemp;
+                vcc = newvcc;
+                bias = newbias;
+                tx = newtx;
+                rx = newrx;
+            }
+            _reset1.Set();
+        }
+
+        private void sfp10Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int temp = 0;
+            int newtemp = 0;
+            int vcc = 0;
+            int newvcc = 0;
+            int bias = 0;
+            int newbias = 0;
+            float tx = 0;
+            float newtx = 0;
+            float rx = 0;
+            float newrx = 0;
+            String html, serial;
+            int row, oldrow = -1;
+            while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
+            {
+                html = connection.getPort1();
+                newtemp = Parser.getTemp(html);
+                newvcc = Parser.getVcc(html);
+                newbias = Parser.getBias(html);
+                newtx = Parser.getTx(html);
+                newrx = Parser.getRx(html);
+                if (Parser.present(html))
+                {
+                    serial = Parser.getSerial(html);
+                    if (serial.Length >= 1)
+                    {
+                        row = Grid.findSerial(dataGridView1, serial);
+                        if (oldrow == -1)
+                        {
+                            if (row != -1)
+                            {
+                                if (!Grid.tested(dataGridView1, row))
+                                {
+                                    dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                    oldrow = row;
+                                    if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    {
+                                        String partnum = Parser.getPart(html);
+                                        String vendor = Parser.getVendor(html);
+                                        String rev = Parser.getRev(html);
+                                        String spd = Parser.getSpd(html);
+                                        String wl = Parser.getWL(html);
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        {
+                                            Image image = null;
+                                            Thread renderThread = new Thread(() => {
+                                                image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                            });
+                                            renderThread.SetApartmentState(ApartmentState.STA);
+                                            renderThread.Start();
+                                            renderThread.Join();
+                                            Image saveImage = (Image)image.Clone();
+                                            pictureBox1.Image = image;
+                                            output.saveReport(saveImage, partnum, serial);
+                                            dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                            oldrow = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (row == oldrow)
+                            {
+                                dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                oldrow = row;
+                                if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                {
+                                    String partnum = Parser.getPart(html);
+                                    String vendor = Parser.getVendor(html);
+                                    String rev = Parser.getRev(html);
+                                    String spd = Parser.getSpd(html);
+                                    String wl = Parser.getWL(html);
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    {
+                                        Image image = null;
+                                        Thread renderThread = new Thread(() => {
+                                            image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                        });
+                                        renderThread.SetApartmentState(ApartmentState.STA);
+                                        renderThread.Start();
+                                        renderThread.Join();
+                                        Image saveImage = (Image)image.Clone();
+                                        pictureBox1.Image = image;
+                                        output.saveReport(saveImage, partnum, serial);
+                                        dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                        oldrow = -1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                                oldrow = -1;
+                            }
+                        }
+                    }
+                    else if (oldrow != -1)
+                    {
+                        dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                        oldrow = -1;
+                    }
+                }
+                else if (oldrow != -1)
+                {
+                    dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                    oldrow = -1;
+                }
+                temp = newtemp;
+                vcc = newvcc;
+                bias = newbias;
+                tx = newtx;
+                rx = newrx;
+            }
+            _reset1.Set();
+        }
+
+        private void sfp11Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int temp = 0;
+            int newtemp = 0;
+            int vcc = 0;
+            int newvcc = 0;
+            int bias = 0;
+            int newbias = 0;
+            float tx = 0;
+            float newtx = 0;
+            float rx = 0;
+            float newrx = 0;
+            String html, serial;
+            int row, oldrow = -1;
+            while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
+            {
+                html = connection.getPort1();
+                newtemp = Parser.getTemp(html);
+                newvcc = Parser.getVcc(html);
+                newbias = Parser.getBias(html);
+                newtx = Parser.getTx(html);
+                newrx = Parser.getRx(html);
+                if (Parser.present(html))
+                {
+                    serial = Parser.getSerial(html);
+                    if (serial.Length >= 1)
+                    {
+                        row = Grid.findSerial(dataGridView1, serial);
+                        if (oldrow == -1)
+                        {
+                            if (row != -1)
+                            {
+                                if (!Grid.tested(dataGridView1, row))
+                                {
+                                    dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                    oldrow = row;
+                                    if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    {
+                                        String partnum = Parser.getPart(html);
+                                        String vendor = Parser.getVendor(html);
+                                        String rev = Parser.getRev(html);
+                                        String spd = Parser.getSpd(html);
+                                        String wl = Parser.getWL(html);
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        {
+                                            Image image = null;
+                                            Thread renderThread = new Thread(() => {
+                                                image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                            });
+                                            renderThread.SetApartmentState(ApartmentState.STA);
+                                            renderThread.Start();
+                                            renderThread.Join();
+                                            Image saveImage = (Image)image.Clone();
+                                            pictureBox1.Image = image;
+                                            output.saveReport(saveImage, partnum, serial);
+                                            dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                            oldrow = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (row == oldrow)
+                            {
+                                dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                oldrow = row;
+                                if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                {
+                                    String partnum = Parser.getPart(html);
+                                    String vendor = Parser.getVendor(html);
+                                    String rev = Parser.getRev(html);
+                                    String spd = Parser.getSpd(html);
+                                    String wl = Parser.getWL(html);
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    {
+                                        Image image = null;
+                                        Thread renderThread = new Thread(() => {
+                                            image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                        });
+                                        renderThread.SetApartmentState(ApartmentState.STA);
+                                        renderThread.Start();
+                                        renderThread.Join();
+                                        Image saveImage = (Image)image.Clone();
+                                        pictureBox1.Image = image;
+                                        output.saveReport(saveImage, partnum, serial);
+                                        dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                        oldrow = -1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                                oldrow = -1;
+                            }
+                        }
+                    }
+                    else if (oldrow != -1)
+                    {
+                        dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                        oldrow = -1;
+                    }
+                }
+                else if (oldrow != -1)
+                {
+                    dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                    oldrow = -1;
+                }
+                temp = newtemp;
+                vcc = newvcc;
+                bias = newbias;
+                tx = newtx;
+                rx = newrx;
+            }
+            _reset1.Set();
+        }
+
+        private void sfp12Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int temp = 0;
+            int newtemp = 0;
+            int vcc = 0;
+            int newvcc = 0;
+            int bias = 0;
+            int newbias = 0;
+            float tx = 0;
+            float newtx = 0;
+            float rx = 0;
+            float newrx = 0;
+            String html, serial;
+            int row, oldrow = -1;
+            while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
+            {
+                html = connection.getPort1();
+                newtemp = Parser.getTemp(html);
+                newvcc = Parser.getVcc(html);
+                newbias = Parser.getBias(html);
+                newtx = Parser.getTx(html);
+                newrx = Parser.getRx(html);
+                if (Parser.present(html))
+                {
+                    serial = Parser.getSerial(html);
+                    if (serial.Length >= 1)
+                    {
+                        row = Grid.findSerial(dataGridView1, serial);
+                        if (oldrow == -1)
+                        {
+                            if (row != -1)
+                            {
+                                if (!Grid.tested(dataGridView1, row))
+                                {
+                                    dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                    oldrow = row;
+                                    if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    {
+                                        String partnum = Parser.getPart(html);
+                                        String vendor = Parser.getVendor(html);
+                                        String rev = Parser.getRev(html);
+                                        String spd = Parser.getSpd(html);
+                                        String wl = Parser.getWL(html);
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        {
+                                            Image image = null;
+                                            Thread renderThread = new Thread(() => {
+                                                image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                            });
+                                            renderThread.SetApartmentState(ApartmentState.STA);
+                                            renderThread.Start();
+                                            renderThread.Join();
+                                            Image saveImage = (Image)image.Clone();
+                                            pictureBox1.Image = image;
+                                            output.saveReport(saveImage, partnum, serial);
+                                            dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                            oldrow = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (row == oldrow)
+                            {
+                                dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
+                                oldrow = row;
+                                if (Parser.checkTemp(html) && Parser.checkVcc(html) && Parser.checkBias(html) && Parser.checkTx(html) && Parser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                {
+                                    String partnum = Parser.getPart(html);
+                                    String vendor = Parser.getVendor(html);
+                                    String rev = Parser.getRev(html);
+                                    String spd = Parser.getSpd(html);
+                                    String wl = Parser.getWL(html);
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    {
+                                        Image image = null;
+                                        Thread renderThread = new Thread(() => {
+                                            image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
+                                        });
+                                        renderThread.SetApartmentState(ApartmentState.STA);
+                                        renderThread.Start();
+                                        renderThread.Join();
+                                        Image saveImage = (Image)image.Clone();
+                                        pictureBox1.Image = image;
+                                        output.saveReport(saveImage, partnum, serial);
+                                        dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Green;
+                                        oldrow = -1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                                oldrow = -1;
+                            }
+                        }
+                    }
+                    else if (oldrow != -1)
+                    {
+                        dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                        oldrow = -1;
+                    }
+                }
+                else if (oldrow != -1)
+                {
+                    dataGridView1.Rows[oldrow].Cells[0].Style.BackColor = Color.Red;
+                    oldrow = -1;
+                }
+                temp = newtemp;
+                vcc = newvcc;
+                bias = newbias;
+                tx = newtx;
+                rx = newrx;
+            }
+            _reset1.Set();
+        }
+
+
+
         //Handles clicking the consecutive add button
         private void cons_Click(object sender, EventArgs e)
         {
@@ -730,6 +1717,12 @@ namespace AutoTest
                     }
                 }
             }
+        }
+
+        private void configurePorts_Click(object sender, EventArgs e)
+        {
+            metronodeLTForm1 = new MetronodeLTPortsForm();
+            metronodeLTForm1.Show();
         }
     }
 }
