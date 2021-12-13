@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AutoTest
 {
-    public class MicronodeLTParser
+    class Format3Parser
     {
         //Find serial number in the html string
         public static String getSerial(String html)
