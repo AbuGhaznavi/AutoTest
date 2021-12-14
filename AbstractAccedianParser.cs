@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoTest
 {
-    abstract class AbstractAccedianParser
+    public abstract class AbstractAccedianParser
     {
         // Declare abstract getters
         public abstract string getSerial(String html);
