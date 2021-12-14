@@ -43,7 +43,9 @@ namespace AutoTest
             checkBox11 = metronodeLTPort11;
             checkBox12 = metronodeLTPort12;
             this.mainForm = _mainForm;
+            
             LoadCheckStates(mainForm.portStates);
+            setCheckBoxUsability(mainForm.switchChoice);
         }
 
         public void LoadCheckStates(List<bool> portStates)
@@ -86,6 +88,120 @@ namespace AutoTest
             mainForm.savePortStates(GetCheckboxStates());
         }
 
+        public void setCheckBoxUsability(String switchCode)
+        {
+            // If switch code has not been set yet
+            if (switchCode == null)
+            {
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+                checkBox7.Enabled = false;
+                checkBox8.Enabled = false;
+                checkBox9.Enabled = false;
+                checkBox10.Enabled = false;
+                checkBox11.Enabled = false;
+                checkBox12.Enabled = false;
+
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+                checkBox5.Checked = false;
+                checkBox6.Checked = false;
+                checkBox7.Checked = false;
+                checkBox8.Checked = false;
+                checkBox9.Checked = false;
+                checkBox10.Checked = false;
+                checkBox11.Checked = false;
+                checkBox12.Checked = false;
+                return;
+            }
+            if (switchCode.Equals("A"))
+            {
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+                checkBox7.Enabled = false;
+                checkBox8.Enabled = false;
+                checkBox9.Enabled = false;
+                checkBox10.Enabled = false;
+                checkBox11.Enabled = false;
+                checkBox12.Enabled = false;
+
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+                checkBox5.Checked = false;
+                checkBox6.Checked = false;
+                checkBox7.Checked = false;
+                checkBox8.Checked = false;
+                checkBox9.Checked = false;
+                checkBox10.Checked = false;
+                checkBox11.Checked = false;
+                checkBox12.Checked = false;
+
+            } else if (switchCode.Equals("B"))
+            {
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+                checkBox7.Enabled = false;
+                checkBox8.Enabled = false;
+                checkBox9.Enabled = false;
+                checkBox10.Enabled = false;
+                checkBox11.Enabled = false;
+                checkBox12.Enabled = false;
+
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+                checkBox5.Checked = false;
+                checkBox6.Checked = false;
+                checkBox7.Checked = false;
+                checkBox8.Checked = false;
+                checkBox9.Checked = false;
+                checkBox10.Checked = false;
+                checkBox11.Checked = false;
+                checkBox12.Checked = false;
+            } else if (switchCode.Equals("C"))
+            {
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+                checkBox7.Enabled = true;
+                checkBox8.Enabled = true;
+                checkBox9.Enabled = true;
+                checkBox10.Enabled = true;
+                checkBox11.Enabled = true;
+                checkBox12.Enabled = true;
+            } else
+            {
+
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+                checkBox7.Enabled = false;
+                checkBox8.Enabled = false;
+                checkBox9.Enabled = false;
+                checkBox10.Enabled = false;
+                checkBox11.Enabled = false;
+                checkBox12.Enabled = false;
+
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+                checkBox5.Checked = false;
+                checkBox6.Checked = false;
+                checkBox7.Checked = false;
+                checkBox8.Checked = false;
+                checkBox9.Checked = false;
+                checkBox10.Checked = false;
+                checkBox11.Checked = false;
+                checkBox12.Checked = false;
+
+            }
+        }
 
 
         private void ConfigureMetronodeLTPorts_Click(object sender, EventArgs e)

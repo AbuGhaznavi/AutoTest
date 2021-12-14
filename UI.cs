@@ -25,7 +25,7 @@ namespace AutoTest
         private AutoResetEvent _reset10 = new AutoResetEvent(false);
         private AutoResetEvent _reset11 = new AutoResetEvent(false);
         private AutoResetEvent _reset12 = new AutoResetEvent(false);
-        private String switchChoice; 
+        public String switchChoice; 
         public add()
         {
             // Inititalize port states to be false
@@ -1810,56 +1810,21 @@ namespace AutoTest
         {
            if (switchTypeMethod.Text.Equals("Switch A")) {
                 switchChoice = "A";
-                metronodeLTForm1.checkBox3.Enabled = false;
-                metronodeLTForm1.checkBox4.Enabled = false;
-                metronodeLTForm1.checkBox5.Enabled = false;
-                metronodeLTForm1.checkBox6.Enabled = false;
-                metronodeLTForm1.checkBox7.Enabled = false;
-                metronodeLTForm1.checkBox8.Enabled = false;
-                metronodeLTForm1.checkBox9.Enabled = false;
-                metronodeLTForm1.checkBox10.Enabled = false;
-                metronodeLTForm1.checkBox11.Enabled = false;
-                metronodeLTForm1.checkBox12.Enabled = false;
+                
             }
            else if (switchTypeMethod.Text.Equals("Switch B")) {
                 switchChoice = "B";
-                metronodeLTForm1.checkBox3.Enabled = false;
-                metronodeLTForm1.checkBox4.Enabled = false;
-                metronodeLTForm1.checkBox5.Enabled = false;
-                metronodeLTForm1.checkBox6.Enabled = false;
-                metronodeLTForm1.checkBox7.Enabled = false;
-                metronodeLTForm1.checkBox8.Enabled = false;
-                metronodeLTForm1.checkBox9.Enabled = false;
-                metronodeLTForm1.checkBox10.Enabled = false;
-                metronodeLTForm1.checkBox11.Enabled = false;
-                metronodeLTForm1.checkBox12.Enabled = false;
+               
             }
            else if (switchTypeMethod.Text.Equals("Switch C")) {
                 switchChoice = "C";
-                metronodeLTForm1.checkBox3.Enabled = true;
-                metronodeLTForm1.checkBox4.Enabled = true;
-                metronodeLTForm1.checkBox5.Enabled = true;
-                metronodeLTForm1.checkBox6.Enabled = true;
-                metronodeLTForm1.checkBox7.Enabled = true;
-                metronodeLTForm1.checkBox8.Enabled = true;
-                metronodeLTForm1.checkBox9.Enabled = true;
-                metronodeLTForm1.checkBox10.Enabled = true;
-                metronodeLTForm1.checkBox11.Enabled = true;
-                metronodeLTForm1.checkBox12.Enabled = true;
+                
             }
            else {
                 switchChoice = "A";
-                metronodeLTForm1.checkBox3.Enabled = false;
-                metronodeLTForm1.checkBox4.Enabled = false;
-                metronodeLTForm1.checkBox5.Enabled = false;
-                metronodeLTForm1.checkBox6.Enabled = false;
-                metronodeLTForm1.checkBox7.Enabled = false;
-                metronodeLTForm1.checkBox8.Enabled = false;
-                metronodeLTForm1.checkBox9.Enabled = false;
-                metronodeLTForm1.checkBox10.Enabled = false;
-                metronodeLTForm1.checkBox11.Enabled = false;
-                metronodeLTForm1.checkBox12.Enabled = false;
+                
             }
+            metronodeLTForm1.setCheckBoxUsability(switchChoice);
         }
     }
 }
