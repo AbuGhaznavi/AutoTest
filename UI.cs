@@ -23,7 +23,7 @@ namespace AutoTest
         private AutoResetEvent _reset10 = new AutoResetEvent(false);
         private AutoResetEvent _reset11 = new AutoResetEvent(false);
         private AutoResetEvent _reset12 = new AutoResetEvent(false);
-
+        private String switchChoice; 
         public add()
         {
             InitializeComponent();
@@ -1788,6 +1788,22 @@ namespace AutoTest
         {
             metronodeLTForm1 = new MetronodeLTPortsForm();
             metronodeLTForm1.Show();
+        }
+
+        private void switchType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           if (switchTypeMethod.Text.Equals("Switch A")) {
+                switchChoice = "A";
+           }
+           else if (switchTypeMethod.Text.Equals("Switch B")) {
+                switchChoice = "B";
+            }
+           else if (switchTypeMethod.Text.Equals("Switch C")) {
+                switchChoice = "C";
+            }
+           else {
+                switchChoice = "A";
+            }
         }
     }
 }

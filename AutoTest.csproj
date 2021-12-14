@@ -73,6 +73,12 @@
     <Compile Include="ConsoleTest.Designer.cs">
       <DependentUpon>ConsoleTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="MetronodeLTPortsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MetronodeLTPortsForm.Designer.cs">
+      <DependentUpon>MetronodeLTPortsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MicronodeLTParser.cs" />
     <Compile Include="UI.cs">
       <SubType>Form</SubType>
@@ -90,6 +96,9 @@
     <Compile Include="Rect.cs" />
     <EmbeddedResource Include="ConsoleTest.resx">
       <DependentUpon>ConsoleTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MetronodeLTPortsForm.resx">
+      <DependentUpon>MetronodeLTPortsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI.resx">
       <DependentUpon>UI.cs</DependentUpon>

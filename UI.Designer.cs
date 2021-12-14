@@ -83,6 +83,7 @@
             this.delRow = new System.Windows.Forms.Button();
             this.updateAll = new System.Windows.Forms.Button();
             this.configurePorts = new System.Windows.Forms.Button();
+            this.switchTypeMethod = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -349,7 +350,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(878, 62);
+            this.label5.Location = new System.Drawing.Point(878, 76);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 20;
@@ -357,7 +358,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(942, 60);
+            this.numericUpDown1.Location = new System.Drawing.Point(942, 73);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             10,
             0,
@@ -555,12 +556,29 @@
             this.configurePorts.UseVisualStyleBackColor = true;
             this.configurePorts.Click += new System.EventHandler(this.configurePorts_Click);
             // 
+            // switchTypeMethod
+            // 
+            this.switchTypeMethod.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.switchTypeMethod.FormattingEnabled = true;
+            this.switchTypeMethod.Location = new System.Drawing.Point(873, 41);
+            this.switchTypeMethod.Name = "switchTypeMethod";
+            this.switchTypeMethod.Size = new System.Drawing.Size(114, 21);
+            this.switchTypeMethod.TabIndex = 36;
+            this.switchTypeMethod.Text = "Choose Switch";
+            this.switchTypeMethod.Items.AddRange(new object[] {
+            "Switch A",
+            "Switch B",
+            "Switch C"
+            });
+            this.switchTypeMethod.SelectedIndexChanged += new System.EventHandler(this.switchType_SelectedIndexChanged);
+            // 
             // add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1008, 695);
+            this.Controls.Add(this.switchTypeMethod);
             this.Controls.Add(this.configurePorts);
             this.Controls.Add(this.updateAll);
             this.Controls.Add(this.delRow);
@@ -660,6 +678,7 @@
         private System.Windows.Forms.Button delRow;
         private System.Windows.Forms.Button updateAll;
         private System.Windows.Forms.Button configurePorts;
+        private System.Windows.Forms.ComboBox switchTypeMethod;
     }
 }
 
