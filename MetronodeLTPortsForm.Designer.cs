@@ -50,7 +50,7 @@ namespace AutoTest
             this.ConfigureMetronodeLTPorts.Name = "ConfigureMetronodeLTPorts";
             this.ConfigureMetronodeLTPorts.Size = new System.Drawing.Size(159, 43);
             this.ConfigureMetronodeLTPorts.TabIndex = 0;
-            this.ConfigureMetronodeLTPorts.Text = "Set Metronode LT Ports";
+            this.ConfigureMetronodeLTPorts.Text = "Set Ports";
             this.ConfigureMetronodeLTPorts.UseVisualStyleBackColor = true;
             this.ConfigureMetronodeLTPorts.Click += new System.EventHandler(this.ConfigureMetronodeLTPorts_Click);
             // 
