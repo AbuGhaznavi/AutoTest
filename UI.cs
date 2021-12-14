@@ -2,13 +2,15 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-
+using System.Collections.Generic;
 namespace AutoTest
 {
     public partial class add : Form
     {
 
         public MetronodeLTPortsForm metronodeLTForm1;
+        public List<bool> portStates;
+
         Output output = new Output();
         Connection connection = new Connection();
         private AutoResetEvent _reset1 = new AutoResetEvent(false);
@@ -26,6 +28,12 @@ namespace AutoTest
         private String switchChoice; 
         public add()
         {
+            // Inititalize port states to be false
+            portStates = new List<bool>();
+            for (int x = 0; x < 13; x++)
+            {
+                portStates.Add(false);
+            }
             InitializeComponent();
         }
 
@@ -41,6 +49,11 @@ namespace AutoTest
             {
                 start.Enabled = false;
             }
+        }
+
+        public void savePortStates(List<bool> states)
+        {
+            this.portStates = states;
         }
 
         //Set the first status cell to have an untested red color
@@ -228,51 +241,51 @@ namespace AutoTest
         //Checks what ports are selected and starts the corresponding workers/threads
         private void startTest()
         {
-            if (metronodeLTForm1.checkBox1.Checked)
+            if (portStates[0])
             {
                 sfp1Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox2.Checked)
+            if (portStates[1])
             {
                 sfp2Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox3.Checked)
+            if (portStates[2])
             {
                 sfp3Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox4.Checked)
+            if (portStates[3])
             {
                 sfp4Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox5.Checked)
+            if (portStates[4])
             {
                 sfp5Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox6.Checked)
+            if (portStates[5])
             {
                 sfp6Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox7.Checked)
+            if (portStates[6])
             {
                 sfp7Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox8.Checked)
+            if (portStates[7])
             {
                 sfp8Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox9.Checked)
+            if (portStates[8])
             {
                 sfp9Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox10.Checked)
+            if (portStates[9])
             {
                 sfp10Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox11.Checked)
+            if (portStates[10])
             {
                 sfp11Worker.RunWorkerAsync();
             }
-            if (metronodeLTForm1.checkBox12.Checked)
+            if (portStates[11])
             {
                 sfp12Worker.RunWorkerAsync();
             }
@@ -1784,9 +1797,12 @@ namespace AutoTest
             }
         }
 
+  
+
         private void configurePorts_Click(object sender, EventArgs e)
         {
-            metronodeLTForm1 = new MetronodeLTPortsForm();
+            metronodeLTForm1 = new MetronodeLTPortsForm(this);
+            
             metronodeLTForm1.Show();
         }
 
