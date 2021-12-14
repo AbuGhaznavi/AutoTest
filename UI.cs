@@ -25,11 +25,19 @@ namespace AutoTest
         private AutoResetEvent _reset10 = new AutoResetEvent(false);
         private AutoResetEvent _reset11 = new AutoResetEvent(false);
         private AutoResetEvent _reset12 = new AutoResetEvent(false);
-        public String switchChoice; 
+        public String switchChoice;
+
+        // Set up abstract parser for strategy selection
+        public AbstractAccedianParser selectedParser;
+
+
         public add()
         {
             // Inititalize port states to be false
             portStates = new List<bool>();
+
+            // Initialize parser to be usual Metronode 10GE parser
+            selectedParser = new Metronode10GEParserInstance();
             for (int x = 0; x < 13; x++)
             {
                 portStates.Add(false);
@@ -308,14 +316,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -327,13 +335,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -359,13 +367,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -425,14 +433,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp2Worker.CancellationPending)
             {
                 html = connection.getPort2();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -444,13 +452,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -476,13 +484,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -544,14 +552,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp3Worker.CancellationPending)
             {
                 html = connection.getPort3();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -563,13 +571,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -595,13 +603,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -663,14 +671,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp4Worker.CancellationPending)
             {
                 html = connection.getPort4();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -682,13 +690,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -714,13 +722,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -782,14 +790,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -801,13 +809,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -833,13 +841,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -901,14 +909,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -920,13 +928,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -952,13 +960,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -1020,14 +1028,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -1039,13 +1047,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -1071,13 +1079,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -1139,14 +1147,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -1158,13 +1166,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -1190,13 +1198,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -1258,14 +1266,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -1277,13 +1285,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -1309,13 +1317,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -1377,14 +1385,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -1396,13 +1404,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -1428,13 +1436,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -1496,14 +1504,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -1515,13 +1523,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -1547,13 +1555,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -1615,14 +1623,14 @@ namespace AutoTest
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
-                newtemp = MicronodeLTParser.getTemp(html);
-                newvcc = MicronodeLTParser.getVcc(html);
-                newbias = MicronodeLTParser.getBias(html);
-                newtx = MicronodeLTParser.getTx(html);
-                newrx = MicronodeLTParser.getRx(html);
-                if (MicronodeLTParser.present(html))
+                newtemp = selectedParser.getTemp(html);
+                newvcc = selectedParser.getVcc(html);
+                newbias = selectedParser.getBias(html);
+                newtx = selectedParser.getTx(html);
+                newrx = selectedParser.getRx(html);
+                if (selectedParser.present(html))
                 {
-                    serial = MicronodeLTParser.getSerial(html);
+                    serial = selectedParser.getSerial(html);
                     if (serial.Length >= 1)
                     {
                         row = Grid.findSerial(dataGridView1, serial);
@@ -1634,13 +1642,13 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                     {
-                                        String partnum = MicronodeLTParser.getPart(html);
-                                        String vendor = MicronodeLTParser.getVendor(html);
-                                        String rev = MicronodeLTParser.getRev(html);
-                                        String spd = MicronodeLTParser.getSpd(html);
-                                        String wl = MicronodeLTParser.getWL(html);
+                                        String partnum = selectedParser.getPart(html);
+                                        String vendor = selectedParser.getVendor(html);
+                                        String rev = selectedParser.getRev(html);
+                                        String spd = selectedParser.getSpd(html);
+                                        String wl = selectedParser.getWL(html);
                                         if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                         {
                                             Image image = null;
@@ -1666,13 +1674,13 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (MicronodeLTParser.checkTemp(html) && MicronodeLTParser.checkVcc(html) && MicronodeLTParser.checkBias(html) && MicronodeLTParser.checkTx(html) && MicronodeLTParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
                                 {
-                                    String partnum = MicronodeLTParser.getPart(html);
-                                    String vendor = MicronodeLTParser.getVendor(html);
-                                    String rev = MicronodeLTParser.getRev(html);
-                                    String spd = MicronodeLTParser.getSpd(html);
-                                    String wl = MicronodeLTParser.getWL(html);
+                                    String partnum = selectedParser.getPart(html);
+                                    String vendor = selectedParser.getVendor(html);
+                                    String rev = selectedParser.getRev(html);
+                                    String spd = selectedParser.getSpd(html);
+                                    String wl = selectedParser.getWL(html);
                                     if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
                                     {
                                         Image image = null;
@@ -1808,23 +1816,32 @@ namespace AutoTest
 
         private void switchType_SelectedIndexChanged(object sender, EventArgs e)
         {
+           // Set port usabiility and parser
            if (switchTypeMethod.Text.Equals("Switch A")) {
                 switchChoice = "A";
-                
+                selectedParser = new Metronode10GEParserInstance();
+                numericUpDown1.Value = 3;
             }
            else if (switchTypeMethod.Text.Equals("Switch B")) {
                 switchChoice = "B";
-               
+                selectedParser = new Metronode10GEParserInstance();
+                numericUpDown1.Value = 3;
             }
            else if (switchTypeMethod.Text.Equals("Switch C")) {
                 switchChoice = "C";
-                
+                selectedParser = new MicronodeLTParserInstance();
+                numericUpDown1.Value = 1;
             }
            else {
                 switchChoice = "A";
-                
+                selectedParser = new Metronode10GEParserInstance();
+                numericUpDown1.Value = 3;
             }
-            metronodeLTForm1.setCheckBoxUsability(switchChoice);
+           // Null check the form before injecting the switch choice
+            if (metronodeLTForm1 != null)
+            {
+                metronodeLTForm1.setCheckBoxUsability(switchChoice);
+            }
         }
     }
 }
