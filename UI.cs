@@ -789,7 +789,7 @@ namespace AutoTest
             int row, oldrow = -1;
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
-                html = connection.getPort1();
+                html = connection.getPort5();
                 newtemp = selectedParser.getTemp(html);
                 newvcc = selectedParser.getVcc(html);
                 newbias = selectedParser.getBias(html);
@@ -908,7 +908,7 @@ namespace AutoTest
             int row, oldrow = -1;
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
-                html = connection.getPort1();
+                html = connection.getPort6();
                 newtemp = selectedParser.getTemp(html);
                 newvcc = selectedParser.getVcc(html);
                 newbias = selectedParser.getBias(html);
@@ -1027,7 +1027,7 @@ namespace AutoTest
             int row, oldrow = -1;
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
-                html = connection.getPort1();
+                html = connection.getPort7();
                 newtemp = selectedParser.getTemp(html);
                 newvcc = selectedParser.getVcc(html);
                 newbias = selectedParser.getBias(html);
@@ -1146,7 +1146,7 @@ namespace AutoTest
             int row, oldrow = -1;
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
-                html = connection.getPort1();
+                html = connection.getPort8();
                 newtemp = selectedParser.getTemp(html);
                 newvcc = selectedParser.getVcc(html);
                 newbias = selectedParser.getBias(html);
@@ -1265,7 +1265,7 @@ namespace AutoTest
             int row, oldrow = -1;
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
-                html = connection.getPort1();
+                html = connection.getPort9();
                 newtemp = selectedParser.getTemp(html);
                 newvcc = selectedParser.getVcc(html);
                 newbias = selectedParser.getBias(html);
@@ -1384,7 +1384,7 @@ namespace AutoTest
             int row, oldrow = -1;
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
-                html = connection.getPort1();
+                html = connection.getPort10();
                 newtemp = selectedParser.getTemp(html);
                 newvcc = selectedParser.getVcc(html);
                 newbias = selectedParser.getBias(html);
@@ -1503,7 +1503,7 @@ namespace AutoTest
             int row, oldrow = -1;
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
-                html = connection.getPort1();
+                html = connection.getPort11();
                 newtemp = selectedParser.getTemp(html);
                 newvcc = selectedParser.getVcc(html);
                 newbias = selectedParser.getBias(html);
@@ -1622,7 +1622,7 @@ namespace AutoTest
             int row, oldrow = -1;
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
-                html = connection.getPort1();
+                html = connection.getPort12();
                 newtemp = selectedParser.getTemp(html);
                 newvcc = selectedParser.getVcc(html);
                 newbias = selectedParser.getBias(html);
