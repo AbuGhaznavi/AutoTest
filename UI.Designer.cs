@@ -84,6 +84,7 @@
             this.updateAll = new System.Windows.Forms.Button();
             this.configurePorts = new System.Windows.Forms.Button();
             this.switchTypeMethod = new System.Windows.Forms.ComboBox();
+            this.pullDownButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -560,17 +561,28 @@
             // 
             this.switchTypeMethod.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.switchTypeMethod.FormattingEnabled = true;
+            this.switchTypeMethod.Items.AddRange(new object[] {
+            "Switch A",
+            "Switch B",
+            "Switch C"});
             this.switchTypeMethod.Location = new System.Drawing.Point(873, 41);
             this.switchTypeMethod.Name = "switchTypeMethod";
             this.switchTypeMethod.Size = new System.Drawing.Size(114, 21);
             this.switchTypeMethod.TabIndex = 36;
             this.switchTypeMethod.Text = "Choose Switch";
-            this.switchTypeMethod.Items.AddRange(new object[] {
-            "Switch A",
-            "Switch B",
-            "Switch C"
-            });
             this.switchTypeMethod.SelectedIndexChanged += new System.EventHandler(this.switchType_SelectedIndexChanged);
+            // 
+            // pullDownButton
+            // 
+            this.pullDownButton.AccessibleName = "pullDownButton";
+            this.pullDownButton.Enabled = false;
+            this.pullDownButton.Location = new System.Drawing.Point(177, 71);
+            this.pullDownButton.Name = "pullDownButton";
+            this.pullDownButton.Size = new System.Drawing.Size(75, 23);
+            this.pullDownButton.TabIndex = 37;
+            this.pullDownButton.Text = "Pull First";
+            this.pullDownButton.UseVisualStyleBackColor = true;
+            this.pullDownButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // add
             // 
@@ -578,6 +590,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1008, 695);
+            this.Controls.Add(this.pullDownButton);
             this.Controls.Add(this.switchTypeMethod);
             this.Controls.Add(this.configurePorts);
             this.Controls.Add(this.updateAll);
@@ -679,6 +692,7 @@
         private System.Windows.Forms.Button updateAll;
         private System.Windows.Forms.Button configurePorts;
         private System.Windows.Forms.ComboBox switchTypeMethod;
+        private System.Windows.Forms.Button pullDownButton;
     }
 }
 

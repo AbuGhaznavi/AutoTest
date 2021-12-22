@@ -30,7 +30,8 @@ namespace AutoTest
         // Set up abstract parser for strategy selection
         public AbstractAccedianParser selectedParser;
 
-
+        // Global list of chars for trimming whitespace
+        public readonly char[] trimChars = { ' ', '\n', '\t', '\r' };
         public add()
         {
             // Inititalize port states to be false
@@ -59,6 +60,18 @@ namespace AutoTest
             }
         }
 
+        // Check if it is safe to enable the "Pull First Option"
+        private void checkPull()
+        {
+            if (output.checkDirectory() && connection.connected())
+            {
+                pullDownButton.Enabled = true;
+            } else
+            {
+                pullDownButton.Enabled = false;
+            }
+        }
+
         public void savePortStates(List<bool> states)
         {
             this.portStates = states;
@@ -78,6 +91,29 @@ namespace AutoTest
             {
                 output.createDirectory(textBox1.Text);
                 checkStart();
+                checkPull();
+            }
+        }
+
+        private void cleanDataGrid()
+        {
+            int width = dataGridView1.Rows.Count;
+            int height = dataGridView1.Columns.Count;
+            // Loop through and trim all the boxes
+
+            for (int row_idx = 0; row_idx < width; row_idx++)
+            {
+                for (int col_idx = 0; col_idx < dataGridView1.Rows[row_idx].Cells.Count; col_idx++)
+                {
+
+                    // Interpret datagridview item as string
+                    string currentItem = (string)dataGridView1.Rows[row_idx].Cells[col_idx].Value;
+
+                    // Skip anything that cannot be interpreted as string
+                    if (currentItem == null) continue;
+                    string trimmedItem = currentItem.Trim(trimChars);
+                    dataGridView1.Rows[row_idx].Cells[col_idx].Value = trimmedItem;
+                }
             }
         }
 
@@ -111,7 +147,12 @@ namespace AutoTest
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ReadOnly = true;
             cons.Enabled = false;
+            pullDownButton.Enabled = false;
             connection.idx = (int) numericUpDown1.Value;
+
+            // Clean up the information displayed in data grid
+            cleanDataGrid();
+
             startTest();
         }
 
@@ -142,6 +183,7 @@ namespace AutoTest
             clear.Enabled = true;
             dataGridView1.AllowUserToAddRows = true;
             dataGridView1.AllowUserToDeleteRows = true;
+            pullDownButton.Enabled = true;
             dataGridView1.ReadOnly = false;
             cons.Enabled = true;
             if (metronodeLTForm1.checkBox1.Checked)
@@ -213,6 +255,7 @@ namespace AutoTest
                 }
             }
             checkStart();
+            checkPull();
         }
 
         //Handles setting the base test report folder
@@ -244,6 +287,7 @@ namespace AutoTest
             String s = connection.getList();
             pictureBox1.Image = new HtmlToBitmapConverter().Render(s, new Size(900, 1200));
             checkStart();
+            checkPull();
         }
 
         //Checks what ports are selected and starts the corresponding workers/threads
@@ -1809,6 +1853,7 @@ namespace AutoTest
 
         private void configurePorts_Click(object sender, EventArgs e)
         {
+            
             metronodeLTForm1 = new MetronodeLTPortsForm(this);
             
             metronodeLTForm1.Show();
@@ -1842,6 +1887,31 @@ namespace AutoTest
             {
                 metronodeLTForm1.setCheckBoxUsability(switchChoice);
             }
+        }
+
+        // Pull from the first port
+        private void pullFirst()
+        {
+            // WILL ALWAYS USE PORT ONE
+            String html = connection.getPort1();
+            String partnum = selectedParser.getPart(html);
+            String vendor = selectedParser.getVendor(html);
+            String rev = selectedParser.getRev(html);
+            String spd = selectedParser.getSpd(html);
+            String wl = selectedParser.getWL(html);
+
+            // dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+
+            dataGridView1.Rows[0].Cells[2].Value = partnum;
+            dataGridView1.Rows[0].Cells[3].Value = vendor;
+            dataGridView1.Rows[0].Cells[4].Value = rev;
+            dataGridView1.Rows[0].Cells[5].Value = spd;
+            dataGridView1.Rows[0].Cells[6].Value = wl;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pullFirst();
         }
     }
 }
