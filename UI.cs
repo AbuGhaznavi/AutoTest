@@ -1899,9 +1899,10 @@ namespace AutoTest
             String rev = selectedParser.getRev(html);
             String spd = selectedParser.getSpd(html);
             String wl = selectedParser.getWL(html);
-
+            String serial = selectedParser.getSerial(html);
             // dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
 
+            dataGridView1.Rows[0].Cells[1].Value = serial;
             dataGridView1.Rows[0].Cells[2].Value = partnum;
             dataGridView1.Rows[0].Cells[3].Value = vendor;
             dataGridView1.Rows[0].Cells[4].Value = rev;
