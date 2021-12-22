@@ -151,7 +151,7 @@ namespace AutoTest
             connection.idx = (int) numericUpDown1.Value;
 
             // Clean up the information displayed in data grid
-            cleanDataGrid();
+            // cleanDataGrid();
 
             startTest();
         }
@@ -1892,6 +1892,10 @@ namespace AutoTest
         // Pull from the first port
         private void pullFirst()
         {
+
+            // Fix any potential index issues that may result from pulling
+            connection.idx = (int)numericUpDown1.Value;
+
             // WILL ALWAYS USE PORT ONE
             String html = connection.getPort1();
             String partnum = selectedParser.getPart(html);
@@ -1902,12 +1906,20 @@ namespace AutoTest
             String serial = selectedParser.getSerial(html);
             // dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
 
+            // Clone the first gridViewRow
+            DataGridViewRow initRow = (DataGridViewRow) dataGridView1.Rows[0].Clone();
+
+            // Add the datarow
+            dataGridView1.Rows.Add(initRow);
+
             dataGridView1.Rows[0].Cells[1].Value = serial;
             dataGridView1.Rows[0].Cells[2].Value = partnum;
             dataGridView1.Rows[0].Cells[3].Value = vendor;
             dataGridView1.Rows[0].Cells[4].Value = rev;
             dataGridView1.Rows[0].Cells[5].Value = spd;
             dataGridView1.Rows[0].Cells[6].Value = wl;
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
