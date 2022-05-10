@@ -85,6 +85,7 @@
             this.configurePorts = new System.Windows.Forms.Button();
             this.switchTypeMethod = new System.Windows.Forms.ComboBox();
             this.pullDownButton = new System.Windows.Forms.Button();
+            this.copper = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -584,12 +585,24 @@
             this.pullDownButton.UseVisualStyleBackColor = true;
             this.pullDownButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // copper
+            // 
+            this.copper.AutoSize = true;
+            this.copper.Location = new System.Drawing.Point(192, 44);
+            this.copper.Name = "copper";
+            this.copper.Size = new System.Drawing.Size(60, 17);
+            this.copper.TabIndex = 38;
+            this.copper.Text = "Copper";
+            this.copper.UseVisualStyleBackColor = true;
+            this.copper.CheckedChanged += new System.EventHandler(this.copper_CheckedChanged);
+            // 
             // add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1008, 695);
+            this.Controls.Add(this.copper);
             this.Controls.Add(this.pullDownButton);
             this.Controls.Add(this.switchTypeMethod);
             this.Controls.Add(this.configurePorts);
@@ -693,6 +706,7 @@
         private System.Windows.Forms.Button configurePorts;
         private System.Windows.Forms.ComboBox switchTypeMethod;
         private System.Windows.Forms.Button pullDownButton;
+        private System.Windows.Forms.CheckBox copper;
     }
 }
 

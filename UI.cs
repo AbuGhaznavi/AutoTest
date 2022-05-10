@@ -1926,5 +1926,10 @@ namespace AutoTest
         {
             pullFirst();
         }
+
+        private void copper_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
