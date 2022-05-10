@@ -53,6 +53,9 @@
     <ApplicationIcon>sandstone_logo_black_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.11.42.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.11.42\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -74,6 +77,7 @@
     <Compile Include="ConsoleTest.Designer.cs">
       <DependentUpon>ConsoleTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="CopperParser.cs" />
     <Compile Include="Metronode10GEParserInstance.cs" />
     <Compile Include="MetronodeLTPortsForm.cs">
       <SubType>Form</SubType>
@@ -116,6 +120,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

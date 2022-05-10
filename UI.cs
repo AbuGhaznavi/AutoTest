@@ -153,6 +153,11 @@ namespace AutoTest
             // Clean up the information displayed in data grid
             // cleanDataGrid();
 
+            if (copper.Checked)
+            {
+                selectedParser = new CopperParser();
+            }
+
             startTest();
         }
 
@@ -184,6 +189,7 @@ namespace AutoTest
             dataGridView1.AllowUserToAddRows = true;
             dataGridView1.AllowUserToDeleteRows = true;
             pullDownButton.Enabled = true;
+            copper.Checked = false;
             dataGridView1.ReadOnly = false;
             cons.Enabled = true;
             if (metronodeLTForm1.checkBox1.Checked)
