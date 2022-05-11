@@ -149,7 +149,7 @@ namespace AutoTest
             cons.Enabled = false;
             pullDownButton.Enabled = false;
             connection.idx = (int) numericUpDown1.Value;
-
+            dataGridView1.ClearSelection();
             // Clean up the information displayed in data grid
             // cleanDataGrid();
 
@@ -189,7 +189,7 @@ namespace AutoTest
             dataGridView1.AllowUserToAddRows = true;
             dataGridView1.AllowUserToDeleteRows = true;
             pullDownButton.Enabled = true;
-            copper.Checked = false;
+           
             dataGridView1.ReadOnly = false;
             cons.Enabled = true;
             if (metronodeLTForm1.checkBox1.Checked)
@@ -385,14 +385,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) &&  ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -417,14 +417,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ) ) )
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -502,14 +502,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -534,14 +534,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -621,14 +621,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -653,14 +653,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -740,14 +740,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -772,14 +772,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -859,14 +859,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -891,14 +891,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -978,14 +978,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1010,14 +1010,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1097,14 +1097,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1129,14 +1129,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1216,14 +1216,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1248,14 +1248,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1335,14 +1335,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1367,14 +1367,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1454,14 +1454,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1486,14 +1486,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1573,14 +1573,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1605,14 +1605,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1692,14 +1692,14 @@ namespace AutoTest
                                 {
                                     dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                     oldrow = row;
-                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                    if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                     {
                                         String partnum = selectedParser.getPart(html);
                                         String vendor = selectedParser.getVendor(html);
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1724,14 +1724,14 @@ namespace AutoTest
                             {
                                 dataGridView1.Rows[row].Cells[0].Style.BackColor = Color.Orange;
                                 oldrow = row;
-                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx))
+                                if (selectedParser.checkTemp(html) && selectedParser.checkVcc(html) && selectedParser.checkBias(html) && selectedParser.checkTx(html) && selectedParser.checkRx(html) && ( copper.Checked || (temp != newtemp || vcc != newvcc || bias != newbias || tx != newtx || rx != newrx) ))
                                 {
                                     String partnum = selectedParser.getPart(html);
                                     String vendor = selectedParser.getVendor(html);
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && dataGridView1.Rows[row].Cells[6].Value.Equals(wl))
+                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
