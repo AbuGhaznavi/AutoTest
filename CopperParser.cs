@@ -11,8 +11,8 @@ namespace AutoTest
 
         // Move all DDM related search functions to top and set to trivial return values
         public const string UNSUPPORTED_STRING = "unsupported";
-        public const float UNSUPPORTED_FLOAT = 0;
-        public const int UNSUPPORTED_INT = 0;
+        public const float UNSUPPORTED_FLOAT = -1;
+        public const int UNSUPPORTED_INT = -1;
 
 
         //Find serial number in the html string
