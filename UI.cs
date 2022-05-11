@@ -3,11 +3,14 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using AutoTest;
+
+
 namespace AutoTest
 {
     public partial class add : Form
     {
-
+        
         public MetronodeLTPortsForm metronodeLTForm1;
         public List<bool> portStates;
 
@@ -351,6 +354,7 @@ namespace AutoTest
 
         private void sfp1Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 0;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -363,6 +367,9 @@ namespace AutoTest
             float newrx = 0;
             String html, serial;
             int row, oldrow = -1;
+
+            
+
             while (!Grid.done(dataGridView1) && !sfp1Worker.CancellationPending)
             {
                 html = connection.getPort1();
@@ -392,8 +399,13 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) &&  ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) &&  ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
+                                            
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
                                                 image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
@@ -424,8 +436,13 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
+                                        
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
                                             image = HtmlToBitmapConverter.start(html, new Size(900, 1200));
@@ -468,6 +485,7 @@ namespace AutoTest
 
         private void sfp2Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 1;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -509,7 +527,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -541,7 +562,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -587,6 +611,7 @@ namespace AutoTest
 
         private void sfp3Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 2;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -628,7 +653,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -660,7 +688,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -706,6 +737,7 @@ namespace AutoTest
 
         private void sfp4Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 3;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -747,7 +779,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -779,7 +814,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -825,6 +863,7 @@ namespace AutoTest
 
         private void sfp5Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 4;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -866,7 +905,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -898,7 +940,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -944,6 +989,7 @@ namespace AutoTest
 
         private void sfp6Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 5;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -985,7 +1031,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1017,7 +1066,12 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1063,6 +1117,7 @@ namespace AutoTest
 
         private void sfp7Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 6;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -1104,7 +1159,12 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1136,7 +1196,11 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1182,6 +1246,7 @@ namespace AutoTest
 
         private void sfp8Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 7;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -1223,7 +1288,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1255,7 +1323,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1301,6 +1372,7 @@ namespace AutoTest
 
         private void sfp9Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 8;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -1342,7 +1414,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1374,7 +1449,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1420,6 +1498,7 @@ namespace AutoTest
 
         private void sfp10Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 9;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -1461,7 +1540,12 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1493,7 +1577,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1539,6 +1626,7 @@ namespace AutoTest
 
         private void sfp11Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 10;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -1580,7 +1668,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1612,7 +1703,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1658,6 +1752,7 @@ namespace AutoTest
 
         private void sfp12Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            int worker_idx = 11;
             int temp = 0;
             int newtemp = 0;
             int vcc = 0;
@@ -1699,7 +1794,10 @@ namespace AutoTest
                                         String rev = selectedParser.getRev(html);
                                         String spd = selectedParser.getSpd(html);
                                         String wl = selectedParser.getWL(html);
-                                        if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                        string list_page = connection.getLinkStatusesPage();
+                                        bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                        bool linked = port_statuses[worker_idx];
+                                        if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                         {
                                             Image image = null;
                                             Thread renderThread = new Thread(() => {
@@ -1731,7 +1829,10 @@ namespace AutoTest
                                     String rev = selectedParser.getRev(html);
                                     String spd = selectedParser.getSpd(html);
                                     String wl = selectedParser.getWL(html);
-                                    if (dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
+                                    string list_page = connection.getLinkStatusesPage();
+                                    bool[] port_statuses = MetronodeLTCopperLinkTester.GetStatuses(list_page);
+                                    bool linked = port_statuses[worker_idx];
+                                    if (linked && dataGridView1.Rows[row].Cells[2].Value.Equals(partnum) && dataGridView1.Rows[row].Cells[3].Value.Equals(vendor) && dataGridView1.Rows[row].Cells[4].Value.Equals(rev) && dataGridView1.Rows[row].Cells[5].Value.Equals(spd) && ( copper.Checked || dataGridView1.Rows[row].Cells[6].Value.Equals(wl) ))
                                     {
                                         Image image = null;
                                         Thread renderThread = new Thread(() => {
@@ -1799,7 +1900,7 @@ namespace AutoTest
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Version:\nBeta 1.8.13.19", "About");
+            MessageBox.Show("Version:\nBeta 1.22.420.69\n Released (5/11/2022)", "About");
         }
 
         private void consoleTestingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1867,20 +1968,27 @@ namespace AutoTest
 
         private void switchType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string A_ip = "192.168.1.3";
+            string B_ip = "192.168.1.4";
+            string C_ip = "192.168.1.39";
            // Set port usabiility and parser
            if (switchTypeMethod.Text.Equals("Switch A")) {
                 switchChoice = "A";
                 selectedParser = new Metronode10GEParserInstance();
+                ip.Text = A_ip;
                 numericUpDown1.Value = 3;
             }
            else if (switchTypeMethod.Text.Equals("Switch B")) {
                 switchChoice = "B";
+                ip.Text = B_ip;
                 selectedParser = new Metronode10GEParserInstance();
                 numericUpDown1.Value = 3;
             }
            else if (switchTypeMethod.Text.Equals("Switch C")) {
                 switchChoice = "C";
+                ip.Text = C_ip;
                 selectedParser = new MicronodeLTParserInstance();
+
                 numericUpDown1.Value = 1;
             }
            else {
@@ -1914,17 +2022,31 @@ namespace AutoTest
 
             // Clone the first gridViewRow
             DataGridViewRow initRow = (DataGridViewRow) dataGridView1.Rows[0].Clone();
+            initRow.Cells[1].Value = serial;
+            initRow.Cells[2].Value = partnum;
+            initRow.Cells[3].Value = vendor;
+            initRow.Cells[4].Value = rev;
+            initRow.Cells[5].Value = spd;
+            initRow.Cells[6].Value = wl;
+
+
 
             // Add the datarow
             dataGridView1.Rows.Add(initRow);
 
-            dataGridView1.Rows[0].Cells[1].Value = serial;
-            dataGridView1.Rows[0].Cells[2].Value = partnum;
-            dataGridView1.Rows[0].Cells[3].Value = vendor;
-            dataGridView1.Rows[0].Cells[4].Value = rev;
-            dataGridView1.Rows[0].Cells[5].Value = spd;
-            dataGridView1.Rows[0].Cells[6].Value = wl;
 
+
+            // Copy previous values to that row
+            int rc = dataGridView1.RowCount;
+            
+            /**
+            dataGridView1.Rows[rc - 1].Cells[1].Value = serial;
+            dataGridView1.Rows[rc - 1].Cells[2].Value = partnum;
+            dataGridView1.Rows[rc - 1].Cells[3].Value = vendor;
+            dataGridView1.Rows[rc - 1].Cells[4].Value = rev;
+            dataGridView1.Rows[rc - 1].Cells[5].Value = spd;
+            dataGridView1.Rows[rc - 1].Cells[6].Value = wl;
+            **/
             
         }
 

@@ -115,6 +115,38 @@ namespace AutoTest
             }
         }
 
+        // Get a list of link statuses for all the ports
+        public string getLinkStatusesPage()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://" + ip + "/page1_0.asp");
+            request.CookieContainer = container;
+            request.Timeout = 5000;
+
+            try
+            {
+                using (WebResponse response = request.GetResponse())
+                {
+                    Stream dataStream = response.GetResponseStream();
+                    // Open the stream using a StreamReader for easy access.
+                    StreamReader reader = new StreamReader(dataStream);
+                    // Read the content.
+                    String responseFromServer = reader.ReadToEnd();
+
+                    // Clean up the streams.
+                    reader.Close();
+                    dataStream.Close();
+                    response.Close();
+
+                    return responseFromServer;
+                }
+            }
+            catch (WebException e)
+            {
+                return e.Status + "\n" + e.Message;
+            }
+
+        }
+
         //Get the html for the first port
         public string getPort1()
         {
