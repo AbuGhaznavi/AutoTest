@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="CopperParser.cs" />
     <Compile Include="Metronode10GEParserInstance.cs" />
+    <Compile Include="MetronodeLTCopperLinkTester.cs" />
     <Compile Include="MetronodeLTPortsForm.cs">
       <SubType>Form</SubType>
     </Compile>
