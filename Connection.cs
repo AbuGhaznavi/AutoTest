@@ -10,7 +10,7 @@ namespace AutoTest
     {
         private static readonly HttpClient client = new HttpClient();
         CookieContainer container = new CookieContainer();
-        String ip = "192.168.1.2";
+        String ip = "192.168.1.3";
         public int idx = 1;
 
         //When a new connection is created set the validation to accept all certificates because Accedian uses bad certificates
