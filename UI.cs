@@ -1931,5 +1931,10 @@ namespace AutoTest
         {
 
         }
+
+        private void ip_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

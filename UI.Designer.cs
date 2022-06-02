@@ -250,7 +250,8 @@
             this.ip.Name = "ip";
             this.ip.Size = new System.Drawing.Size(100, 20);
             this.ip.TabIndex = 10;
-            this.ip.Text = "192.168.1.2";
+            this.ip.Text = "192.168.1.3";
+            this.ip.TextChanged += new System.EventHandler(this.ip_TextChanged);
             // 
             // user
             // 
