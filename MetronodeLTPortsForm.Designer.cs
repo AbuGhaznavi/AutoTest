@@ -42,6 +42,8 @@ namespace AutoTest
             this.metronodeLTPort10 = new System.Windows.Forms.CheckBox();
             this.metronodeLTPort11 = new System.Windows.Forms.CheckBox();
             this.metronodeLTPort12 = new System.Windows.Forms.CheckBox();
+            this.check_all_btn = new System.Windows.Forms.Button();
+            this.uncheck_all_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ConfigureMetronodeLTPorts
@@ -174,11 +176,33 @@ namespace AutoTest
             this.metronodeLTPort12.Text = "Port 12";
             this.metronodeLTPort12.UseVisualStyleBackColor = true;
             // 
+            // check_all_btn
+            // 
+            this.check_all_btn.Location = new System.Drawing.Point(170, 243);
+            this.check_all_btn.Name = "check_all_btn";
+            this.check_all_btn.Size = new System.Drawing.Size(86, 23);
+            this.check_all_btn.TabIndex = 13;
+            this.check_all_btn.Text = "Check all";
+            this.check_all_btn.UseVisualStyleBackColor = true;
+            this.check_all_btn.Click += new System.EventHandler(this.check_all_btn_Click);
+            // 
+            // uncheck_all_btn
+            // 
+            this.uncheck_all_btn.Location = new System.Drawing.Point(359, 243);
+            this.uncheck_all_btn.Name = "uncheck_all_btn";
+            this.uncheck_all_btn.Size = new System.Drawing.Size(75, 23);
+            this.uncheck_all_btn.TabIndex = 14;
+            this.uncheck_all_btn.Text = "Uncheck all";
+            this.uncheck_all_btn.UseVisualStyleBackColor = true;
+            this.uncheck_all_btn.Click += new System.EventHandler(this.uncheck_all_btn_Click);
+            // 
             // MetronodeLTPortsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 306);
+            this.Controls.Add(this.uncheck_all_btn);
+            this.Controls.Add(this.check_all_btn);
             this.Controls.Add(this.metronodeLTPort12);
             this.Controls.Add(this.metronodeLTPort11);
             this.Controls.Add(this.metronodeLTPort10);
@@ -215,5 +239,7 @@ namespace AutoTest
         private System.Windows.Forms.CheckBox metronodeLTPort10;
         private System.Windows.Forms.CheckBox metronodeLTPort11;
         private System.Windows.Forms.CheckBox metronodeLTPort12;
+        private System.Windows.Forms.Button check_all_btn;
+        private System.Windows.Forms.Button uncheck_all_btn;
     }
 }
